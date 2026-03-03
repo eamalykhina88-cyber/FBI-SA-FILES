@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Федеральное Бюро Расследований | Доступ ограничен</title>
+    <title>ФЕДЕРАЛЬНОЕ БЮРО РАССЛЕДОВАНИЙ | ЗАЩИЩЕННЫЙ ДОСТУП</title>
     <style>
         * {
             margin: 0;
@@ -203,7 +203,6 @@
             font-family: 'Courier New', monospace;
         }
 
-        /* НОВЫЙ БЛОК - ПОИСК ГРАЖДАН */
         .citizen-database {
             background-color: #050505;
             border: 1px solid #330000;
@@ -388,7 +387,6 @@
             font-size: 12px;
         }
 
-        /* МОДАЛЬНОЕ ОКНО ДЛЯ БИО АГЕНТА */
         .agent-modal {
             display: none;
             position: fixed;
@@ -461,7 +459,6 @@
             margin-bottom: 5px;
         }
 
-        /* МОДАЛЬНОЕ ОКНО ДЛЯ АРХИВА */
         .archive-modal {
             display: none;
             position: fixed;
@@ -689,6 +686,22 @@
             transform: scale(1.05);
         }
 
+        .footer-warning {
+            text-align: center;
+            margin-top: 30px;
+            color: #4a4a4a;
+            font-size: 12px;
+            text-transform: uppercase;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 20px;
+        }
+
+        .footer-warning span {
+            color: #8b0000;
+            font-weight: bold;
+        }
+
+        /* МОДАЛЬНЫЕ ОКНА ДЛЯ ПАРОЛЕЙ */
         .password-modal {
             display: none;
             position: fixed;
@@ -696,8 +709,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
             justify-content: center;
             align-items: center;
         }
@@ -707,10 +720,10 @@
         }
 
         .password-box {
-            background-color: #111;
+            background: #111;
             border: 3px solid #8b0000;
             padding: 40px;
-            max-width: 400px;
+            max-width: 500px;
             width: 90%;
             box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
         }
@@ -720,6 +733,11 @@
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 3px;
+        }
+
+        .password-box p {
+            color: #ccc;
+            margin-bottom: 20px;
         }
 
         .password-box input {
@@ -772,21 +790,6 @@
         .error-message.show {
             display: block;
         }
-
-        .footer-warning {
-            text-align: center;
-            margin-top: 30px;
-            color: #4a4a4a;
-            font-size: 12px;
-            text-transform: uppercase;
-            border-top: 1px solid #1a1a1a;
-            padding-top: 20px;
-        }
-
-        .footer-warning span {
-            color: #8b0000;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -803,20 +806,19 @@
         </div>
 
         <div class="case-nav">
-            <button class="nav-btn active" onclick="switchPage('active', this)">Активные дела</button>
-            <button class="nav-btn" onclick="switchPage('wanted', this)">Розыск</button>
-            <button class="nav-btn" onclick="switchPage('agents', this)">Агенты</button>
-            <button class="nav-btn" onclick="switchPage('archive', this)">Архив PAYDAY</button>
+            <button class="nav-btn active" onclick="checkPageAccess('active', this)">Активные дела</button>
+            <button class="nav-btn" onclick="checkPageAccess('wanted', this)">Розыск</button>
+            <button class="nav-btn" onclick="checkPageAccess('agents', this)">Агенты</button>
+            <button class="nav-btn" onclick="checkPageAccess('archive', this)">Архив PAYDAY</button>
         </div>
 
         <div class="alert-button-container">
-            <button class="alert-nav-btn" onclick="switchPage('alert', this)">🚨 ТРЕВОГА 🚨</button>
+            <button class="alert-nav-btn" onclick="checkSwatAccess()">🚨 ТРЕВОГА 🚨</button>
         </div>
 
-        <!-- АКТИВНЫЕ ДЕЛА + БАЗА ГРАЖДАН -->
+        <!-- Активные дела (доступны без пароля) -->
         <div id="page-active" class="page active-page">
             <div class="content-grid">
-                <!-- Левая колонка: Досье на банду -->
                 <div class="case-file">
                     <h2>ДОСЬЕ: ОПЕРАЦИЯ "ПЕРЕГРУЗКА"</h2>
                     <div class="case-meta">
@@ -835,113 +837,29 @@
                     </div>
                 </div>
 
-                <!-- Правая колонка: БАЗА ДАННЫХ ГРАЖДАН -->
-                <div class="citizen-database">
-                    <h3>🔍 БАЗА ДАННЫХ ГРАЖДАН</h3>
-                    <div class="search-box">
-                        <input type="text" id="citizenSearch" placeholder="Введите ФИО..." onkeypress="if(event.key==='Enter') searchCitizen()">
-                        <button onclick="searchCitizen()">НАЙТИ</button>
+                <div class="active-orders">
+                    <h3>⚡ АКТИВНЫЕ ОПЕРАЦИИ</h3>
+                    <div class="order-item">
+                        <span>First World Bank</span>
+                        <span class="status hot">★ Срочно ★</span>
                     </div>
-
-                    <!-- Карточка Глеба Малыхина (депутат) -->
-                    <div id="citizenGleb" class="citizen-card">
-                        <h4>⚡ ГЛЕБ МАЛЫХИН ⚡</h4>
-                        <div class="citizen-info">
-                            <span class="c-label">ФИО:</span>
-                            <span>Малыхин Глеб Дмитриевич</span>
-                            <span class="c-label">Дата рождения:</span>
-                            <span>16.11.1997</span>
-                            <span class="c-label">Должность:</span>
-                            <span>Депутат по социально-трудовым делам</span>
-                            <span class="c-label">Статус:</span>
-                            <span style="color: #0f0;">ДЕЙСТВУЮЩИЙ</span>
-                            <span class="c-label">Примечание:</span>
-                            <span>Курирует трудовое законодательство</span>
-                        </div>
+                    <div class="order-item">
+                        <span>Убежище на Бенсон-стрит</span>
+                        <span class="status">Оцепление</span>
                     </div>
-
-                    <!-- Карточка Reginald Von Ravenhorst (агент ФБР) -->
-                    <div id="citizenRaven" class="citizen-card">
-                        <h4>⚡ REGINALD VON RAVENHORST ⚡</h4>
-                        <div class="citizen-info">
-                            <span class="c-label">ФИО:</span>
-                            <span>Равенхорст Реджинальд</span>
-                            <span class="c-label">Дата рождения:</span>
-                            <span>05.11.1990</span>
-                            <span class="c-label">Должность:</span>
-                            <span>Специальный агент ФБР</span>
-                            <span class="c-label">Статус:</span>
-                            <span style="color: #0f0;">ДЕЙСТВУЮЩИЙ</span>
-                            <span class="c-label">Примечание:</span>
-                            <span>Специалист по международным делам</span>
-                        </div>
+                    <div class="order-item">
+                        <span>Бриллиантовая шахта</span>
+                        <span class="status">Под наблюдением</span>
                     </div>
-
-                    <!-- Карточка Ивана Драго (мэр города) -->
-                    <div id="citizenDrago" class="citizen-card">
-                        <h4>⚡ ИВАН ДРАГО (МЭР) ⚡</h4>
-                        <div class="citizen-info">
-                            <span class="c-label">ФИО:</span>
-                            <span>Драго Иван Петрович</span>
-                            <span class="c-label">Дата рождения:</span>
-                            <span>20.03.1983</span>
-                            <span class="c-label">Должность:</span>
-                            <span>Мэр Сан-Фиерро</span>
-                            <span class="c-label">Статус:</span>
-                            <span style="color: #0f0;">ДЕЙСТВУЮЩИЙ</span>
-                            <span class="c-label">Примечание:</span>
-                            <span>Глава городской администрации</span>
-                        </div>
+                    <div class="order-item">
+                        <span>Шоссе 42, блокпост</span>
+                        <span class="status hot">★ Перестрелка ★</span>
                     </div>
-
-                    <!-- Карточка Майка Маласа (губернатор) -->
-                    <div id="citizenMalas" class="citizen-card">
-                        <h4>⚡ МАЙК МАЛАС (ГУБЕРНАТОР) ⚡</h4>
-                        <div class="citizen-info">
-                            <span class="c-label">ФИО:</span>
-                            <span>Малас Майкл Торено</span>
-                            <span class="c-label">Дата рождения:</span>
-                            <span>05.03.1995</span>
-                            <span class="c-label">Должность:</span>
-                            <span>Губернатор штата Сан-Андреас</span>
-                            <span class="c-label">Статус:</span>
-                            <span style="color: #0f0;">ДЕЙСТВУЮЩИЙ</span>
-                            <span class="c-label">Примечание:</span>
-                            <span>Высшее должностное лицо штата</span>
-                        </div>
-                    </div>
-
-                    <!-- Сообщение "не найдено" -->
-                    <div id="citizenNotFound" class="citizen-card">
-                        <h4 style="color: #ff5555;">❌ ГРАЖДАНИН НЕ НАЙДЕН</h4>
-                        <p style="color: #aaa;">Проверьте правильность ввода ФИО</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Активные операции -->
-            <div class="active-orders" style="margin-top: 20px;">
-                <h3>⚡ АКТИВНЫЕ ОПЕРАЦИИ</h3>
-                <div class="order-item">
-                    <span>First World Bank</span>
-                    <span class="status hot">★ Срочно ★</span>
-                </div>
-                <div class="order-item">
-                    <span>Убежище на Бенсон-стрит</span>
-                    <span class="status">Оцепление</span>
-                </div>
-                <div class="order-item">
-                    <span>Бриллиантовая шахта</span>
-                    <span class="status">Под наблюдением</span>
-                </div>
-                <div class="order-item">
-                    <span>Шоссе 42, блокпост</span>
-                    <span class="status hot">★ Перестрелка ★</span>
                 </div>
             </div>
         </div>
 
-        <!-- РОЗЫСК -->
+        <!-- Розыск -->
         <div id="page-wanted" class="page">
             <div class="wanted-list">
                 <h2 style="color: white; margin-bottom: 20px; border-bottom: 2px solid #8b0000;">⚡ ФЕДЕРАЛЬНЫЙ РОЗЫСК</h2>
@@ -975,7 +893,7 @@
             </div>
         </div>
 
-        <!-- АГЕНТЫ (КЛИКАБЕЛЬНЫЕ) -->
+        <!-- Агенты -->
         <div id="page-agents" class="page">
             <div class="agents-grid">
                 <div class="agent-card" onclick="showAgentBio('fox')">
@@ -999,7 +917,7 @@
             </div>
         </div>
 
-        <!-- АРХИВ PAYDAY (КЛИКАБЕЛЬНЫЙ) -->
+        <!-- Архив -->
         <div id="page-archive" class="page">
             <div class="archive-list">
                 <h2 style="color: white; margin-bottom: 20px; border-bottom: 2px solid #ffaa00;">📁 АРХИВ ОПЕРАЦИЙ PAYDAY</h2>
@@ -1065,7 +983,7 @@
             </div>
         </div>
 
-        <!-- ЗАСЕКРЕЧЕНО - МАЙК МАЛАС -->
+        <!-- Засекречено (Малас) -->
         <div id="page-malasa" class="page" style="position: relative;">
             <div class="classified-stamp">СЕКРЕТНО</div>
             <div class="malasa-dossier">
@@ -1108,7 +1026,7 @@
             </div>
         </div>
 
-        <!-- Лента новостей -->
+        <!-- Лента -->
         <div class="live-feed">
             <p>[CAPTAIN] Отряд быстрого реагирования выдвинут на координаты 42.3242, -71.342</p>
             <p>[INTEL] Подтверждено использование маски "Хокстон"</p>
@@ -1118,10 +1036,10 @@
 
         <!-- Нижние нашивки -->
         <div class="badges">
-            <div class="badge" onclick="switchPage('terror')">ОТДЕЛ ПО БОРЬБЕ С ТЕРРОРИЗМОМ</div>
-            <div class="badge" onclick="switchPage('swat')">КОМАНДА SWAT</div>
-            <div class="badge" onclick="switchPage('intel')">КРИМИНАЛЬНАЯ РАЗВЕДКА</div>
-            <div class="badge" onclick="showPasswordModal()">ЗАСЕКРЕЧЕНО</div>
+            <div class="badge" onclick="checkPageAccess('terror')">ОТДЕЛ ПО БОРЬБЕ С ТЕРРОРИЗМОМ</div>
+            <div class="badge" onclick="checkPageAccess('swat')">КОМАНДА SWAT</div>
+            <div class="badge" onclick="checkPageAccess('intel')">КРИМИНАЛЬНАЯ РАЗВЕДКА</div>
+            <div class="badge" onclick="checkMalasAccess()">ЗАСЕКРЕЧЕНО</div>
         </div>
 
         <div class="footer-warning">
@@ -1130,36 +1048,148 @@
 
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО ПАРОЛЯ -->
-    <div id="passwordModal" class="password-modal">
+    <!-- МОДАЛЬНОЕ ОКНО ВХОДА НА САЙТ -->
+    <div id="loginModal" class="password-modal active">
         <div class="password-box">
-            <h2>🔐 ВВЕДИТЕ ПАРОЛЬ</h2>
-            <input type="password" id="passwordInput" placeholder="ПАРОЛЬ ДОСТУПА" onkeypress="if(event.key==='Enter') checkPassword()">
+            <h2>🔐 ВХОД В СИСТЕМУ ФБР</h2>
+            <p>Введите пароль доступа к базе данных</p>
+            <input type="password" id="loginPassword" placeholder="ПАРОЛЬ ДОСТУПА" onkeypress="if(event.key==='Enter') checkLogin()">
             <div>
-                <button onclick="checkPassword()">ВОЙТИ</button>
-                <button class="close-btn" onclick="hidePasswordModal()">ОТМЕНА</button>
+                <button onclick="checkLogin()">ВОЙТИ</button>
             </div>
-            <div id="passwordError" class="error-message">НЕВЕРНЫЙ ПАРОЛЬ! ДОСТУП ЗАПРЕЩЕН</div>
+            <div id="loginError" class="error-message">НЕВЕРНЫЙ ПАРОЛЬ! ДОСТУП ЗАПРЕЩЕН</div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ПАРОЛЯ ДЛЯ РАЗДЕЛОВ -->
+    <div id="sectionModal" class="password-modal">
+        <div class="password-box">
+            <h2 id="sectionModalTitle">🔐 ВВЕДИТЕ ПАРОЛЬ</h2>
+            <input type="password" id="sectionPassword" placeholder="ПАРОЛЬ ДОСТУПА" onkeypress="if(event.key==='Enter') checkSectionPassword()">
+            <div>
+                <button onclick="checkSectionPassword()">ВОЙТИ</button>
+                <button class="close-btn" onclick="hideSectionModal()">ОТМЕНА</button>
+            </div>
+            <div id="sectionError" class="error-message">НЕВЕРНЫЙ ПАРОЛЬ! ДОСТУП ЗАПРЕЩЕН</div>
         </div>
     </div>
 
     <!-- МОДАЛЬНОЕ ОКНО БИО АГЕНТА -->
     <div id="agentModal" class="agent-modal">
-        <div class="agent-bio" id="agentBioContent">
-            <!-- Контент будет подставляться скриптом -->
-        </div>
+        <div class="agent-bio" id="agentBioContent"></div>
     </div>
 
     <!-- МОДАЛЬНОЕ ОКНО АРХИВА -->
     <div id="archiveModal" class="archive-modal">
-        <div class="archive-detail" id="archiveDetailContent">
-            <!-- Контент будет подставляться скриптом -->
-        </div>
+        <div class="archive-detail" id="archiveDetailContent"></div>
     </div>
 
     <script>
-        const SECRET_PASSWORD = "MALASA2026";
-        
+        // ПАРОЛИ
+        const LOGIN_PASSWORD = "SFFBILOG565";           // Вход на сайт
+        const ARCHIVE_PASSWORD = "ARCHFBI435";          // Архив
+        const AGENTS_PASSWORD = "FBIINFO2025";          // Агенты и розыск
+        const SWAT_PASSWORD = "SWATCALL294141";         // Вызов SWAT
+        const MALAS_PASSWORD = "MALASA2026";            // Засекречено (Малас)
+
+        let pendingSection = '';
+        let pendingElement = null;
+
+        // ПРОВЕРКА ВХОДА НА САЙТ
+        function checkLogin() {
+            const password = document.getElementById('loginPassword').value;
+            if (password === LOGIN_PASSWORD) {
+                document.getElementById('loginModal').classList.remove('active');
+                document.getElementById('page-active').classList.add('active-page');
+            } else {
+                document.getElementById('loginError').classList.add('show');
+            }
+        }
+
+        // ПРОВЕРКА ДОСТУПА К РАЗДЕЛУ
+        function checkPageAccess(pageName, element) {
+            if (pageName === 'active') {
+                switchPage(pageName, element);
+                return;
+            }
+            
+            pendingSection = pageName;
+            pendingElement = element;
+            
+            let title = '';
+            let requiredPassword = '';
+            
+            if (pageName === 'wanted' || pageName === 'agents') {
+                title = 'ДОСТУП К РОЗЫСКУ И АГЕНТАМ';
+                requiredPassword = AGENTS_PASSWORD;
+            } else if (pageName === 'archive') {
+                title = 'ДОСТУП К АРХИВУ PAYDAY';
+                requiredPassword = ARCHIVE_PASSWORD;
+            } else if (pageName === 'swat') {
+                title = 'ДОСТУП К ВЫЗОВУ SWAT';
+                requiredPassword = SWAT_PASSWORD;
+            } else {
+                title = 'ДОСТУП К РАЗДЕЛУ';
+                requiredPassword = pageName; // Для остальных разделов пароль не требуется
+            }
+            
+            document.getElementById('sectionModalTitle').textContent = `🔐 ${title}`;
+            document.getElementById('sectionModal').classList.add('active');
+            document.getElementById('sectionPassword').value = '';
+            document.getElementById('sectionError').classList.remove('show');
+        }
+
+        // ПРОВЕРКА ПАРОЛЯ РАЗДЕЛА
+        function checkSectionPassword() {
+            const password = document.getElementById('sectionPassword').value;
+            let requiredPassword = '';
+            
+            if (pendingSection === 'wanted' || pendingSection === 'agents') {
+                requiredPassword = AGENTS_PASSWORD;
+            } else if (pendingSection === 'archive') {
+                requiredPassword = ARCHIVE_PASSWORD;
+            } else if (pendingSection === 'swat') {
+                requiredPassword = SWAT_PASSWORD;
+            }
+            
+            if (password === requiredPassword) {
+                hideSectionModal();
+                switchPage(pendingSection, pendingElement);
+            } else {
+                document.getElementById('sectionError').classList.add('show');
+            }
+        }
+
+        // ПРОВЕРКА ДОСТУПА К SWAT (отдельно для кнопки тревоги)
+        function checkSwatAccess() {
+            pendingSection = 'swat';
+            pendingElement = null;
+            
+            document.getElementById('sectionModalTitle').textContent = '🔐 ДОСТУП К ВЫЗОВУ SWAT';
+            document.getElementById('sectionModal').classList.add('active');
+            document.getElementById('sectionPassword').value = '';
+            document.getElementById('sectionError').classList.remove('show');
+        }
+
+        // ПРОВЕРКА ДОСТУПА К МАЛАСУ
+        function checkMalasAccess() {
+            pendingSection = 'malas';
+            pendingElement = null;
+            
+            document.getElementById('sectionModalTitle').textContent = '🔐 ДОСТУП К ЗАСЕКРЕЧЕННОМУ ДОСЬЕ';
+            document.getElementById('sectionModal').classList.add('active');
+            document.getElementById('sectionPassword').value = '';
+            document.getElementById('sectionError').classList.remove('show');
+            
+            // Для Маласа свой пароль
+        }
+
+        // СКРЫТЬ МОДАЛЬНОЕ ОКНО ПАРОЛЯ
+        function hideSectionModal() {
+            document.getElementById('sectionModal').classList.remove('active');
+        }
+
+        // ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ
         function switchPage(pageName, element) {
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active-page');
@@ -1173,35 +1203,6 @@
             
             if (element && element.classList.contains('nav-btn')) {
                 element.classList.add('active');
-            }
-        }
-
-        // ПОИСК ГРАЖДАН
-        function searchCitizen() {
-            const query = document.getElementById('citizenSearch').value.toLowerCase().trim();
-            
-            // Скрываем все карточки
-            document.querySelectorAll('.citizen-card').forEach(card => {
-                card.classList.remove('active-card');
-            });
-            
-            if (query.includes('глеб') || query.includes('малыхин') || query.includes('gleb')) {
-                document.getElementById('citizenGleb').classList.add('active-card');
-            }
-            else if (query.includes('raven') || query.includes('равен') || query.includes('reginald') || query.includes('реджинальд')) {
-                document.getElementById('citizenRaven').classList.add('active-card');
-            }
-            else if (query.includes('иван') || query.includes('drago') || query.includes('драго')) {
-                document.getElementById('citizenDrago').classList.add('active-card');
-            }
-            else if (query.includes('майк') || query.includes('малас') || query.includes('mike') || query.includes('malas')) {
-                document.getElementById('citizenMalas').classList.add('active-card');
-            }
-            else if (query === '') {
-                // Ничего не показываем
-            }
-            else {
-                document.getElementById('citizenNotFound').classList.add('active-card');
             }
         }
 
@@ -1220,7 +1221,7 @@
                     <p><strong>Специализация:</strong> Полевые операции, захват</p>
                     <p><strong>Послужной список:</strong> 15 лет в ФБР. Участвовал в 34 операциях. Лично задержал 12 особо опасных преступников.</p>
                     <p><strong>Текущий статус:</strong> В поле, преследование группировки PAYDAY</p>
-               <button onclick="document.getElementById('agentModal').classList.remove('active')">ЗАКРЫТЬ</button>
+                    <button onclick="document.getElementById('agentModal').classList.remove('active')">ЗАКРЫТЬ</button>
                 `;
             } else if (agent === 'rains') {
                 bioHtml = `
@@ -1297,40 +1298,12 @@
             modal.classList.add('active');
         }
 
-        // ПАРОЛЬ
-        function showPasswordModal() {
-            document.getElementById('passwordModal').classList.add('active');
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordError').classList.remove('show');
-        }
-
-        function hidePasswordModal() {
-            document.getElementById('passwordModal').classList.remove('active');
-        }
-
-        function checkPassword() {
-            const password = document.getElementById('passwordInput').value;
-            
-            if (password === SECRET_PASSWORD) {
-                hidePasswordModal();
-                document.querySelectorAll('.page').forEach(page => {
-                    page.classList.remove('active-page');
-                });
-                document.getElementById('page-malasa').classList.add('active-page');
-                
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-            } else {
-                document.getElementById('passwordError').classList.add('show');
-            }
-        }
-
         // Закрытие модалок по клику вне окна
         window.onclick = function(event) {
             const agentModal = document.getElementById('agentModal');
             const archiveModal = document.getElementById('archiveModal');
-            const passwordModal = document.getElementById('passwordModal');
+            const sectionModal = document.getElementById('sectionModal');
+            const loginModal = document.getElementById('loginModal');
             
             if (event.target === agentModal) {
                 agentModal.classList.remove('active');
@@ -1338,8 +1311,11 @@
             if (event.target === archiveModal) {
                 archiveModal.classList.remove('active');
             }
-            if (event.target === passwordModal) {
-                passwordModal.classList.remove('active');
+            if (event.target === sectionModal) {
+                sectionModal.classList.remove('active');
+            }
+            if (event.target === loginModal) {
+                // Не закрываем окно входа
             }
         }
     </script>
