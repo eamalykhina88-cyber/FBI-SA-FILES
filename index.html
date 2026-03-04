@@ -793,7 +793,441 @@
         }
 
         /* Модальное окно пароля */
- <div id="passwordModal" class="password-modal">
+         .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .password-modal.active {
+            display: flex;
+        }
+
+        .password-box {
+            background: #111;
+            border: 3px solid #8b0000;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
+        }
+
+        .password-box h2 {
+            color: #ff5e5e;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .password-box input {
+            width: 100%;
+            padding: 15px;
+            background: #1a1a1a;
+            border: 2px solid #333;
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .password-box input:focus {
+            outline: none;
+            border-color: #8b0000;
+        }
+
+        .password-box button {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-right: 10px;
+        }
+
+        .password-box button:hover {
+            background: #ff0000;
+        }
+
+        .password-box .close-btn {
+            background: #333;
+        }
+
+        .password-box .close-btn:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="fbi-terminal">
+
+        <div class="classified-header">
+            <div class="left">ЗАСЕКРЕЧЕНО</div>
+            <div>Допуск: ТОЛЬКО ДЛЯ ПРАВООХРАНИТЕЛЬНЫХ ОРГАНОВ // УРОВЕНЬ 4</div>
+        </div>
+
+        <div class="fbi-seal">
+            <h1>F·B·I</h1>
+            <p>ФЕДЕРАЛЬНОЕ БЮРО РАССЛЕДОВАНИЙ</p>
+        </div>
+
+        <div class="case-nav">
+            <button class="nav-btn active" onclick="checkAccess('active', this)">Активные дела</button>
+            <button class="nav-btn" onclick="checkAccess('wanted', this)">Розыск</button>
+            <button class="nav-btn" onclick="checkAccess('agents', this)">Агенты</button>
+            <button class="nav-btn" onclick="checkAccess('archive', this)">Архив PAYDAY</button>
+        </div>
+
+        <div class="alert-button-container">
+            <button class="alert-nav-btn" onclick="checkAccess('alert', this)">🚨 ТРЕВОГА 🚨</button>
+        </div>
+
+        <!-- Активные дела -->
+        <div id="page-active" class="page active-page">
+            <div class="content-grid">
+                <div class="case-file">
+                    <h2>ДОСЬЕ: ОПЕРАЦИЯ "ПЕРЕГРУЗКА"</h2>
+                    <div class="case-meta">
+                        <span class="label">Статус:</span>
+                        <span class="value" style="color: #ff5e5e;">КРИТИЧЕСКИЙ (ГОРЯЧАЯ ЗОНА)</span>
+                        <span class="label">Цель #1:</span>
+                        <span class="value">Даллас / Штурмовик</span>
+                        <span class="label">Цель #2:</span>
+                        <span class="value">Хокстон / Взломщик</span>
+                        <span class="label">Последнее место:</span>
+                        <span class="value">First World Bank</span>
+                    </div>
+                    <p style="color: #aaa; font-style: italic;">Группа ассоциируется с серией ограблений. Считаются вооруженными и чрезвычайно опасными.</p>
+                    <div style="margin-top: 15px; background: #1a0000; padding: 5px; text-align: center; border: 1px solid #8b0000;">
+                        ⚠️ ПРИКАЗ: ЗАДЕРЖАТЬ ЛЮБОЙ ЦЕНОЙ ⚠️
+                    </div>
+                </div>
+
+                <div class="active-orders">
+                    <h3>⚡ АКТИВНЫЕ ОПЕРАЦИИ</h3>
+                    <div class="order-item">
+                        <span>First World Bank</span>
+                        <span class="status hot">★ Срочно ★</span>
+                    </div>
+                    <div class="order-item">
+                        <span>Убежище на Бенсон-стрит</span>
+                        <span class="status">Оцепление</span>
+                    </div>
+                    <div class="order-item">
+                        <span>Бриллиантовая шахта</span>
+                        <span class="status">Под наблюдением</span>
+                    </div>
+                    <div class="order-item">
+                        <span>Шоссе 42, блокпост</span>
+                        <span class="status hot">★ Перестрелка ★</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Розыск -->
+        <div id="page-wanted" class="page">
+            <div class="wanted-list">
+                <h2 style="color: white; margin-bottom: 20px; border-bottom: 2px solid #8b0000;">⚡ ФЕДЕРАЛЬНЫЙ РОЗЫСК</h2>
+                
+                <div class="wanted-item">
+                    <div class="wanted-photo">👤</div>
+                    <div>
+                        <div class="wanted-name">Даллас (Nathan Steele)</div>
+                        <div style="color: #888;">Лидер группировки, специалист по штурму</div>
+                    </div>
+                    <div class="wanted-reward">$5,000,000</div>
+                </div>
+
+                <div class="wanted-item">
+                    <div class="wanted-photo">👤</div>
+                    <div>
+                        <div class="wanted-name">Хокстон (James Hoxworth)</div>
+                        <div style="color: #888;">Взломщик, инженер</div>
+                    </div>
+                    <div class="wanted-reward">$4,200,000</div>
+                </div>
+
+                <div class="wanted-item">
+                    <div class="wanted-photo">👤</div>
+                    <div>
+                        <div class="wanted-name">Чейнс (Samuel Pearson)</div>
+                        <div style="color: #888;">Бывший морпех</div>
+                    </div>
+                    <div class="wanted-reward">$3,800,000</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Агенты -->
+        <div id="page-agents" class="page">
+            <div class="agents-grid">
+                <div class="agent-card" onclick="showAgentBio('fox')">
+                    <div class="photo">👮</div>
+                    <h3>Special Agent Fox</h3>
+                    <div class="rank">Старший агент</div>
+                    <div class="status">📍 В поле</div>
+                </div>
+                <div class="agent-card" onclick="showAgentBio('rains')">
+                    <div class="photo">👮</div>
+                    <h3>Agent Rains</h3>
+                    <div class="rank">Аналитик</div>
+                    <div class="status">💻 В штабе</div>
+                </div>
+                <div class="agent-card" onclick="showAgentBio('locke')">
+                    <div class="photo">👮</div>
+                    <h3>Agent Locke</h3>
+                    <div class="rank">Координатор</div>
+                    <div class="status">⚠️ Слежка</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Архив -->
+        <div id="page-archive" class="page">
+            <div class="archive-list">
+                <h2 style="color: white; margin-bottom: 20px; border-bottom: 2px solid #ffaa00;">📁 АРХИВ ОПЕРАЦИЙ PAYDAY</h2>
+                
+                <div class="archive-item" onclick="showArchiveDetail('bank')">
+                    <h3>🏦 First World Bank</h3>
+                    <div style="color: #888;">Дата: 12.03.2025 | Ущерб: $8.2M</div>
+                </div>
+                
+                <div class="archive-item" onclick="showArchiveDetail('diamond')">
+                    <h3>💎 Бриллиантовая шахта</h3>
+                    <div style="color: #888;">Дата: 27.02.2025 | Ущерб: $12.5M</div>
+                </div>
+                
+                <div class="archive-item" onclick="showArchiveDetail('national')">
+                    <h3>🏛 Ограбление Нацбанка</h3>
+                    <div style="color: #888;">Дата: 05.01.2025 | Ущерб: $5.7M</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Терроризм -->
+        <div id="page-terror" class="page">
+            <h2 style="color: white; margin-bottom: 20px;">💣 ОТДЕЛ ПО БОРЬБЕ С ТЕРРОРИЗМОМ</h2>
+            <div class="terror-grid">
+                <div class="terror-card">
+                    <h3>УРОВЕНЬ УГРОЗЫ</h3>
+                    <div style="font-size: 48px; color: #ff0000; text-align: center;">КРАСНЫЙ</div>
+                </div>
+                <div class="terror-card">
+                    <h3>АКТИВНЫЕ ЯЧЕЙКИ</h3>
+                    <div style="font-size: 48px; color: #ffaa00; text-align: center;">3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SWAT -->
+        <div id="page-swat" class="page">
+            <div class="swat-panel">
+                <h2 style="color: #ffaa00;">🚨 SWAT TEAM</h2>
+                <button class="swat-button" onclick="alert('🚨 ПОДКРЕПЛЕНИЕ ВЫЗВАНО! ОТРЯД SWAT ВЫЕХАЛ!')">
+                    ВЫЗВАТЬ SWAT
+                </button>
+            </div>
+        </div>
+
+        <!-- Разведка -->
+        <div id="page-intel" class="page">
+            <h2 style="color: white; margin-bottom: 20px;">🕵️ КРИМИНАЛЬНАЯ РАЗВЕДКА</h2>
+            <div class="intel-grid">
+                <div class="intel-card">
+                    <h3>БАНДА PAYDAY</h3>
+                    <p>Активность: ВЫСОКАЯ</p>
+                </div>
+                <div class="intel-card">
+                    <h3>РУССКАЯ МАФИЯ</h3>
+                    <p>Активность: СРЕДНЯЯ</p>
+                </div>
+                <div class="intel-card">
+                    <h3>КОЛУМБИЙСКИЙ КАРТЕЛЬ</h3>
+                    <p>Активность: НИЗКАЯ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ЗАСЕКРЕЧЕНО -->
+        <div id="page-malasa" class="page">
+            <div class="classified-container">
+                <div class="classified-header-large">
+                    <h2>⚡ СОВЕРШЕННО СЕКРЕТНО ⚡</h2>
+                    <div class="stamp">ДОПУСК: УРОВЕНЬ 5</div>
+                </div>
+            </div>
+
+            <div class="classified-tabs">
+                <div class="classified-tab active" onclick="switchClassifiedTab('malas', this)">МАЙК МАЛАС</div>
+                <div class="classified-tab" onclick="switchClassifiedTab('shield', this)">ПРОЕКТ "SUPER SHIELD"</div>
+                <div class="classified-tab" onclick="switchClassifiedTab('milstein', this)">ВИЛЛИ МИЛЬШТЕЙН</div>
+            </div>
+
+            <!-- Майк Малас -->
+            <div id="classified-malas" class="classified-content active">
+                <div class="malasa-dossier">
+                    <div class="malasa-photo">👤</div>
+                    <div class="malasa-info">
+                        <h2>⚡ МАЙК МАЛАС ⚡</h2>
+                        
+                        <div class="field">
+                            <div class="label">ФАМИЛИЯ ИМЯ</div>
+                            <div class="value">Малас Майкл Торено</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="label">ДОЛЖНОСТЬ</div>
+                            <div class="value">Губернатор штата Сан-Андреас</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="label">ДАТА РОЖДЕНИЯ</div>
+                            <div class="value">05.03.1995</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="label">МЕСТО РОЖДЕНИЯ</div>
+                            <div class="value">Либерти Сити</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="label">ДОПУСК</div>
+                            <div class="value" style="color: #ff0000;">УРОВЕНЬ 5 (МАКСИМАЛЬНЫЙ)</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="label">ОПИСАНИЕ</div>
+                            <div class="value" style="font-size: 16px; color: #aaa;">
+                                Родился 5 марта 1995 года в Либерти Сити. На должность губернатора вступил в 2023 году. В 2024 году разрушил ОПГ *SKULL*. В 2025 подавил восстание против правительства. Его настоящая фамилия - Торено (скрытая информация).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Super Shield -->
+            <div id="classified-shield" class="classified-content">
+                <div class="project-shield">
+                    <h2 style="color: #0066cc; font-size: 36px; margin-bottom: 20px;">⚡ ПРОЕКТ "SUPER SHIELD" ⚡</h2>
+                    
+                    <div style="background: #111; border-left: 5px solid #0066cc; padding: 20px;">
+                        <div class="field">
+                            <div class="label">СТАТУС</div>
+                            <div class="value" style="color: #ffaa00;">АКТИВНАЯ РАЗРАБОТКА</div>
+                        </div>
+                        
+                        <div class="field">
+                            <div class="label">ЗАКАЗЧИК</div>
+                            <div class="value">Подразделение SWAT / Министерство обороны</div>
+                        </div>
+                        
+                        <div class="field">
+                            <div class="label">ОПИСАНИЕ</div>
+                            <div class="value" style="font-size: 16px; color: #aaa;">
+                                Тактический штурмовой щит спецподразделений ФБР. Оснащен:
+                                <br>• 🔦 Ослепляющий фонарь-вспышка
+                                <br>• 🛡️ Многослойное бронестекло
+                                <br>• 🔫 Встроенный дробовик
+                            </div>
+                        </div>
+                        
+                        <div class="field">
+                            <div class="label">ДАТА ЗАВЕРШЕНИЯ</div>
+                            <div class="value" style="color: #ffaa00;">2026 (ПРОГНОЗ)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вилли Мильштейн -->
+            <div id="classified-milstein" class="classified-content">
+                <div class="project-milstein">
+                    <h2 style="color: #ff66cc; font-size: 36px; margin-bottom: 20px;">⚡ ВИЛЛИ МИЛЬШТЕЙН ⚡</h2>
+                    
+                    <div style="background: #111; border-left: 5px solid #8b008b; padding: 20px;">
+                        <div class="field">
+                            <div class="label">ФАМИЛИЯ ИМЯ</div>
+                            <div class="value">Мильштейн Вилли</div>
+                        </div>
+                        
+                        <div class="field">
+                            <div class="label">ДОЛЖНОСТЬ</div>
+                            <div class="value">Бизнесмен / Владелец острова</div>
+                        </div>
+                        
+                        <div class="field">
+                            <div class="label">ДАТА РОЖДЕНИЯ</div>
+                            <div class="value">20.07.1965</div>
+                        </div>
+                        
+                        <div class="field">
+                            <div class="label">ПОДОЗРЕНИЯ</div>
+                            <div class="value" style="font-size: 16px; color: #aaa;">
+                                На острове проводятся незаконные мероприятия. Связан с высокопоставленными чиновниками.
+                            </div>
+                        </div>
+                        
+                        <div class="field">
+                            <div class="label">СТАТУС</div>
+                            <div class="value" style="color: #ffaa00;">ПОД СЛЕЖКОЙ</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Тревога -->
+        <div id="page-alert" class="page">
+            <div class="alert-page">
+                <h1 style="color: #ff0000; font-size: 48px;">🚨 RED ALERT 🚨</h1>
+                <p style="color: white; font-size: 24px;">ПРОИСШЕСТВИЕ НА FIRST WORLD BANK</p>
+            </div>
+        </div>
+
+        <!-- Лента -->
+        <div class="live-feed">
+            <p>[CAPTAIN] Отряд быстрого реагирования выдвинут на координаты 42.3242, -71.342</p>
+            <p>[INTEL] Подтверждено использование маски "Хокстон"</p>
+            <p>[ALERT] Зафиксирована детонация C4 в районе банка</p>
+            <p>[CMD] Всем постам: повысить готовность до "Красный код"</p>
+        </div>
+
+        <!-- Нижние нашивки -->
+        <div class="badges">
+            <div class="badge" onclick="checkAccess('terror')">ОТДЕЛ ПО БОРЬБЕ С ТЕРРОРИЗМОМ</div>
+            <div class="badge" onclick="checkAccess('swat')">КОМАНДА SWAT</div>
+            <div class="badge" onclick="checkAccess('intel')">КРИМИНАЛЬНАЯ РАЗВЕДКА</div>
+            <div class="badge" onclick="checkAccess('malas')">ЗАСЕКРЕЧЕНО</div>
+        </div>
+
+        <div class="footer-warning">
+            <span>ЛЮБАЯ УТЕЧКА ИНФОРМАЦИИ ПРЕСЛЕДУЕТСЯ ПО ЗАКОНУ</span>
+        </div>
+
+    </div>
+
+    <!-- Модальное окно входа -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-box">
+            <h2>🔐 ВХОД В СИСТЕМУ ФБР</h2>
+            <input type="password" id="loginPassword" placeholder="ПАРОЛЬ ДОСТУПА" onkeypress="if(event.key==='Enter') checkLogin()">
+            <button onclick="checkLogin()">ВОЙТИ</button>
+            <div id="loginError" class="error-message">НЕВЕРНЫЙ ПАРОЛЬ!</div>
+        </div>
+    </div>
+
+    <!-- Модальное окно пароля -->
+    <div id="passwordModal" class="password-modal">
         <div class="password-box">
             <h2 id="passwordTitle">🔐 ВВЕДИТЕ ПАРОЛЬ</h2>
             <input type="password" id="passwordInput" placeholder="ПАРОЛЬ ДОСТУПА" onkeypress="if(event.key==='Enter') checkPassword()">
@@ -835,149 +1269,8 @@
             if (pwd === FULL_ACCESS) {
                 fullAccess = true;
                 document.getElementById('loginModal').style.display = 'none';
-                document.getElementById('page-active').classList.add('active-page');
-            } 
-            else if (pwd === LOGIN_PASSWORD) {
-                fullAccess = false;
-                document.getElementById('loginModal').style.display = 'none';
-                document.getElementById('page-active').classList.add('active-page');
-            } 
-            else {
-                document.getElementById('loginError').style.display = 'block';
-            }
-        }
-
-        // ПРОВЕРКА ДОСТУПА
-        function checkAccess(page, element) {
-            if (fullAccess) {
-                switchPage(page, element);
-                return;
-            }
-            
-            // Страницы без пароля
-            if (page === 'active' || page === 'terror' || page === 'intel') {
-                switchPage(page, element);
-                return;
-            }
-            
-            pendingPage = page;
-            pendingElement = element;
-            
-            let title = '';
-            if (page === 'wanted' || page === 'agents') title = 'ДОСТУП К РОЗЫСКУ И АГЕНТАМ';
-            else if (page === 'archive') title = 'ДОСТУП К АРХИВУ';
-            else if (page === 'swat' || page === 'alert') title = 'ДОСТУП К ВЫЗОВУ SWAT';
-            else if (page === 'malas') title = 'ДОСТУП К ЗАСЕКРЕЧЕННОМУ ДОСЬЕ';
-            
-            document.getElementById('passwordTitle').innerText = '🔐 ' + title;
-            document.getElementById('passwordModal').classList.add('active');
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordError').style.display = 'none';
-        }
-
-        // ПРОВЕРКА ПАРОЛЯ
-        function checkPassword() {
-            const pwd = document.getElementById('passwordInput').value;
-            let required = '';
-            
-            if (pendingPage === 'wanted' || pendingPage === 'agents') required = AGENTS_PASSWORD;
-            else if (pendingPage === 'archive') required = ARCHIVE_PASSWORD;
-            else if (pendingPage === 'swat' || pendingPage === 'alert') required = SWAT_PASSWORD;
-            else if (pendingPage === 'malas') required = MALAS_PASSWORD;
-            
-            if (pwd === required) {
-                closePasswordModal();
-                switchPage(pendingPage, pendingElement);
-            } else {
-                document.getElementById('passwordError').style.display = 'block';
-            }
-        }
-
-        function closePasswordModal() {
-            document.getElementById('passwordModal').classList.remove('active');
-        }
-
-        // ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ
-        function switchPage(page, element) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-            document.getElementById('page-' + page).classList.add('active-page');
-            
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            if (element) element.classList.add('active');
-            
-            // Если открыли Засекречено, активируем первую вкладку
-            if (page === 'malasa') {
-                setTimeout(() => {
-                    document.querySelectorAll('.classified-tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.classified-content').forEach(c => c.classList.remove('active'));
-                    
-                    const firstTab = document.querySelector('.classified-tab');
-                    const firstContent = document.getElementById('classified-malas');
-                    
-                    if (firstTab) firstTab.classList.add('active');
-                    if (firstContent) firstContent.classList.add('active');
-                }, 100);
-            }
-        }
-
-        // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК В ЗАСЕКРЕЧЕНО
-        function switchClassifiedTab(tab, element) {
-            document.querySelectorAll('.classified-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.classified-content').forEach(c => c.classList.remove('active'));
-            
-            element.classList.add('active');
-            document.getElementById('classified-' + tab).classList.add('active');
-        }
-
-        // БИО АГЕНТОВ
-        function showAgentBio(agent) {
-            const modal = document.getElementById('agentModal');
-            const content = document.getElementById('agentBioContent');
-            
-            let html = '';
-            if (agent === 'fox') {
-                html = '<h2>Special Agent Fox</h2><p>Настоящее имя: Майкл Фокс</p><p>Возраст: 42 года</p><p>Специализация: Полевые операции</p><p>15 лет в ФБР. Участвовал в 34 операциях.</p><button onclick="document.getElementById(\'agentModal\').classList.remove(\'active\')">ЗАКРЫТЬ</button>';
-            } else if (agent === 'rains') {
-                html = '<h2>Agent Rains</h2><p>Настоящее имя: Дэвид Рэйнс</p><p>Возраст: 35 лет</p><p>Специализация: Аналитика</p><p>8 лет в ФБР. Взломал 47 каналов связи.</p><button onclick="document.getElementById(\'agentModal\').classList.remove(\'active\')">ЗАКРЫТЬ</button>';
-            } else if (agent === 'locke') {
-                html = '<h2>Agent Locke</h2><p>Настоящее имя: Джонатан Локк</p><p>Возраст: 39 лет</p><p>Специализация: Координация</p><p>11 лет в ФБР. Координировал 56 операций.</p><button onclick="document.getElementById(\'agentModal\').classList.remove(\'active\')">ЗАКРЫТЬ</button>';
-            }
-            
-            content.innerHTML = html;
-            modal.classList.add('active');
-        }
-
-        // ДЕТАЛИ АРХИВА
-        function showArchiveDetail(archive) {
-            const modal = document.getElementById('archiveModal');
-            const content = document.getElementById('archiveDetailContent');
-            
-            let html = '';
-            if (archive === 'bank') {
-                html = '<h2>🏦 FIRST WORLD BANK</h2><p>Дата: 12.03.2025</p><p>Участники: Даллас, Хокстон, Чейнс, Вулф</p><p>Ущерб: $8.2M</p><p>Статус: Расследуется</p><button onclick="document.getElementById(\'archiveModal\').classList.remove(\'active\')">ЗАКРЫТЬ</button>';
-            } else if (archive === 'diamond') {
-                html = '<h2>💎 БРИЛЛИАНТОВАЯ ШАХТА</h2><p>Дата: 27.02.2025</p><p>Участники: Даллас, Хокстон, Чейнс</p><p>Ущерб: $12.5M</p><p>Статус: Горячий след</p><button onclick="document.getElementById(\'archiveModal\').classList.remove(\'active\')">ЗАКРЫТЬ</button>';
-            } else if (archive === 'national') {
-                html = '<h2>🏛 ОГРАБЛЕНИЕ НАЦБАНКА</h2><p>Дата: 05.01.2025</p><p>Участники: Хокстон, Вулф</p><p>Ущерб: $5.7M</p><p>Статус: Холодное дело</p><button onclick="document.getElementById(\'archiveModal\').classList.remove(\'active\')">ЗАКРЫТЬ</button>';
-            }
-            
-            content.innerHTML = html;
-            modal.classList.add('active');
-        }
-
-        // Закрытие модалок по клику вне окна
-        window.onclick = function(event) {
-            if (event.target === document.getElementById('agentModal')) {
-                document.getElementById('agentModal').classList.remove('active');
-            }
-            if (event.target === document.getElementById('archiveModal')) {
-                document.getElementById('archiveModal').classList.remove('active');
-            }
-            if (event.target === document.getElementById('passwordModal')) {
-                document.getElementById('passwordModal').classList.remove('active');
-            }
+                }
         }
     </script>
 </body>
 </html>
-                
