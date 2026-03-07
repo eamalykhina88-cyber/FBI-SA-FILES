@@ -480,22 +480,26 @@
         </div>
 
         <!-- ОСНОВНАЯ ОБЛАСТЬ С ИКОНКАМИ -->
-        <div class="workspace">
-            <div class="desktop-icons">
-                <div class="icon-row">
-                    <div class="desktop-icon"><span class="icon-image">📁</span><span class="icon-label">Дела</span></div>
-                    <div class="desktop-icon"><span class="icon-image">🔫</span><span class="icon-label">Баллистика</span></div>
-                    <div class="desktop-icon"><span class="icon-image">🌉</span><span class="icon-label">SF Карта</span></div>
-                </div>
-                <div class="icon-row">
-                    <div class="desktop-icon" id="assetsIcon"><span class="icon-image">🛡️</span><span class="icon-label">Активы агентства</span></div>
-                    <div class="desktop-icon"><span class="icon-image">📑</span><span class="icon-label">Служебные записки</span></div>
-                    <div class="desktop-icon"><span class="icon-image">🗄️</span><span class="icon-label">База данных</span></div>
-                </div>
-                <div class="icon-row">
-                    <div class="desktop-icon"><span class="icon-image">👥</span><span class="icon-label">Агенты</span></div>
-                </div>
-            </div>
+        <div    <!-- ИКОНКИ НА РАБОЧЕМ СТОЛЕ -->
+<div class="desktop-icons">
+    <div class="icon-row">
+        <div class="desktop-icon"><span class="icon-image">📁</span><span class="icon-label">Дела</span></div>
+        <div class="desktop-icon"><span class="icon-image">🔫</span><span class="icon-label">Баллистика</span></div>
+        <div class="desktop-icon"><span class="icon-image">🌉</span><span class="icon-label">SF Карта</span></div>
+    </div>
+    <div class="icon-row">
+        <!-- ВОТ ЭТА СТРОКА ДОЛЖНА БЫТЬ С ID -->
+        <div class="desktop-icon" id="assetsIcon">
+            <span class="icon-image">🛡️</span>
+            <span class="icon-label">Активы агентства</span>
+        </div>
+        <div class="desktop-icon"><span class="icon-image">📑</span><span class="icon-label">Служебные записки</span></div>
+        <div class="desktop-icon"><span class="icon-image">🗄️</span><span class="icon-label">База данных</span></div>
+    </div>
+    <div class="icon-row">
+        <div class="desktop-icon"><span class="icon-image">👥</span><span class="icon-label">Агенты</span></div>
+    </div>
+</div>
                         <!-- ОКНО ТЕРМИНАЛА -->
             <div class="app-window" id="terminalWindow" style="display: none;">
                 <div class="window-header" id="windowHeader">
