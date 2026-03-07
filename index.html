@@ -49,78 +49,79 @@
         }
 
         .login-panel .fbi-eagle {
-    font-size: 48px;
-    color: #c49e3f;
-    margin-bottom: 15px;
-}
+            font-size: 48px;
+            color: #c49e3f;
+            margin-bottom: 15px;
+        }
 
-.login-panel h2 {
-    color: #c49e3f;
-    font-size: 24px;
-    margin-bottom: 5px;
-    letter-spacing: 1px;
-}
+        .login-panel h2 {
+            color: #c49e3f;
+            font-size: 24px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
 
-.login-panel p {
-    color: #8a9bb5;
-    margin-bottom: 25px;
-    font-size: 14px;
-    border-bottom: 1px solid #2a3f5a;
-    padding-bottom: 15px;
-}
+        .login-panel p {
+            color: #8a9bb5;
+            margin-bottom: 25px;
+            font-size: 14px;
+            border-bottom: 1px solid #2a3f5a;
+            padding-bottom: 15px;
+        }
 
-.login-field {
-    margin-bottom: 20px;
-    text-align: left;
-}
+        .login-field {
+            margin-bottom: 20px;
+            text-align: left;
+        }
 
-.login-field label {
-    display: block;
-    color: #c49e3f;
-    margin-bottom: 8px;
-    font-weight: 600;
-    font-size: 14px;
-}
+        .login-field label {
+            display: block;
+            color: #c49e3f;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
 
-.login-field input {
-    width: 100%;
-    padding: 14px;
-    background: #0f1a2a;
-    border: 2px solid #2a3f5a;
-    border-radius: 4px;
-    font-size: 16px;
-    outline: none;
-    color: white;
-}
+        .login-field input {
+            width: 100%;
+            padding: 14px;
+            background: #0f1a2a;
+            border: 2px solid #2a3f5a;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+            color: white;
+        }
 
-.login-field input:focus {
-    border-color: #c49e3f;
-                                         }
+        .login-field input:focus {
+            border-color: #c49e3f;
+        }
+
         .login-btn {
-    width: 100%;
-    padding: 14px;
-    background: #c49e3f;
-    border: none;
-    color: #0f1a2a;
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-}
+            width: 100%;
+            padding: 14px;
+            background: #c49e3f;
+            border: none;
+            color: #0f1a2a;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
 
-.login-btn:hover {
-    background: #dbb42c;
-}
+        .login-btn:hover {
+            background: #dbb42c;
+        }
 
-.login-error {
-    color: #ff6b6b;
-    margin-top: 15px;
-    min-height: 20px;
-    font-size: 14px;
-}
+        .login-error {
+            color: #ff6b6b;
+            margin-top: 15px;
+            min-height: 20px;
+            font-size: 14px;
+        }
 
-.desktop {
+        .desktop {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -146,7 +147,8 @@
     pointer-events: none;
     z-index: 0;
 }
-        .top-bar {
+
+.top-bar {
     background: #1a2a3f;
     color: white;
     padding: 12px 25px;
@@ -157,6 +159,7 @@
     z-index: 10;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     border-bottom: 2px solid #c49e3f;
+    flex-shrink: 0;
 }
 
 .top-bar-left {
@@ -204,12 +207,13 @@
     gap: 20px;
     align-items: center;
     color: #8a9bb5;
-}
-        .workspace {
+            }
+.workspace {
     flex: 1;
     padding: 30px;
     position: relative;
     z-index: 5;
+    overflow: hidden;
 }
 
 .desktop-icons {
@@ -257,8 +261,9 @@
     width: 100%;
     color: #c49e3f;
     border: 1px solid #2a3f5a;
-            }
- .bottom-bar {
+}
+
+.bottom-bar {
     background: #1a2a3f;
     color: #8a9bb5;
     padding: 15px 30px;
@@ -292,117 +297,98 @@
     letter-spacing: 1px;
     color: #c49e3f;
     border: 2px solid #c49e3f;
-}
+    }
+                .app-window {
+            position: absolute;
+            top: 80px;
+            left: 200px;
+            width: 900px;
+            height: 600px;
+            background: #0f1a2a;
+            border: 4px solid #c49e3f;
+            border-radius: 15px 15px 10px 10px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            resize: both;
+            overflow: hidden;
+            min-width: 600px;
+            min-height: 400px;
+        }
 
-/* КНОПКИ УПРАВЛЕНИЯ ОКНОМ */
-.window-controls span {
-    cursor: pointer;
-    padding: 5px 12px;
-    font-size: 18px;
-    color: #8a9bb5;
-    transition: 0.2s;
-    border-radius: 4px;
-}
-
-.window-controls span:hover {
-    background: #c49e3f;
-    color: #0f1a2a;
-}
-
-.window-maximized {
-    width: 100% !important;
-    height: 100% !important;
-    top: 0 !important;
-    left: 0 !important;
-    border-radius: 0 !important;
-    border-width: 3px !important;
-}
-    
-.app-window {
-    position: absolute;
-    top: 80px;
-    left: 250px;
-    width: 1000px;
-    height: 650px;
-    background: #0f1a2a;
-    border: 4px solid #c49e3f;
-    border-radius: 15px 15px 10px 10px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
-    display: flex;
-    flex-direction: column;
-    z-index: 100;
-    resize: both;
-    overflow: auto;
-    min-width: 800px;
-    min-height: 550px;
-}
         .window-header {
-    background: linear-gradient(90deg, #1a2a3f, #0f1a2a);
-    padding: 12px 18px;
-    border-radius: 8px 8px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    cursor: move;
-    border-bottom: 2px solid #c49e3f;
-}
+            background: linear-gradient(90deg, #1a2a3f, #0f1a2a);
+            padding: 12px 18px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            cursor: move;
+            border-bottom: 2px solid #c49e3f;
+        }
 
-.window-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #c49e3f;
-}
+        .window-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #c49e3f;
+            font-weight: 600;
+        }
 
-.window-controls {
-    <div class="window-controls">
-    <span id="minimizeBtn">─</span>
-    <span id="maximizeBtn">□</span>
-    <span id="closeBtn">✕</span>
-</div>
+        .window-controls {
+            display: flex;
+            gap: 10px;
+        }
 
-.window-controls span {
-    cursor: pointer;
-    padding: 0 8px;
-    font-size: 18px;
-    color: #8a9bb5;
-}
+        .window-controls span {
+            cursor: pointer;
+            padding: 5px 12px;
+            font-size: 18px;
+            color: #8a9bb5;
+            transition: 0.2s;
+            border-radius: 4px;
+        }
 
-.window-controls span:hover {
-    color: #c49e3f;
-}
+        .window-controls span:hover {
+            background: #c49e3f;
+            color: #0f1a2a;
+        }
 
-.terminal-tabs {
-    display: flex;
-    background: #0f1a2a;
-    border-bottom: 2px solid #c49e3f;
-    padding-left: 15px;
-}
+        .terminal-tabs {
+            display: flex;
+            background: #0f1a2a;
+            border-bottom: 2px solid #c49e3f;
+            padding-left: 15px;
+            flex-wrap: wrap;
+        }
 
-.terminal-tab {
-    padding: 10px 25px;
-    color: #8a9bb5;
-    cursor: pointer;
-    border-right: 1px solid #2a3f5a;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        .terminal-tab {
+            padding: 12px 20px;
+            color: #8a9bb5;
+            cursor: pointer;
+            border-right: 1px solid #2a3f5a;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
 
-.terminal-tab.active {
-    background: #1a2a3f;
-    color: #c49e3f;
-    font-weight: bold;
-}
+        .terminal-tab.active {
+            background: #1a2a3f;
+            color: #c49e3f;
+            font-weight: bold;
+        }
 
-.terminal-tab:hover:not(.active) {
-    background: #1a2a3f;
-    color: white;
-}
-                .terminal-content {
+        .terminal-tab:hover:not(.active) {
+            background: #1a2a3f;
+            color: white;
+        }
+
+        .terminal-content {
             flex: 1;
-            padding: 20px;
+            padding: 25px;
             background: #0a121f;
             color: #4affb5;
             font-family: 'Courier New', monospace;
@@ -433,7 +419,7 @@
         }
 
         .specs-list li {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             border-left: 3px solid #c49e3f;
             padding-left: 15px;
         }
@@ -442,10 +428,21 @@
             color: #c49e3f;
             display: block;
             margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .window-maximized {
+            width: 100% !important;
+            height: 100% !important;
+            top: 0 !important;
+            left: 0 !important;
+            border-radius: 0 !important;
+            border-width: 3px !important;
+            margin: 0 !important;
         }
     </style>
 </head>
-    <body>
+<body>
     <!-- ЭКРАН ВХОДА -->
     <div class="login-screen" id="loginScreen">
         <div class="login-panel">
@@ -479,28 +476,29 @@
             </div>
         </div>
 
-        <!-- ОСНОВНАЯ ОБЛАСТЬ С ИКОНКАМИ -->
-        <div    <!-- ИКОНКИ НА РАБОЧЕМ СТОЛЕ -->
-<div class="desktop-icons">
-    <div class="icon-row">
-        <div class="desktop-icon"><span class="icon-image">📁</span><span class="icon-label">Дела</span></div>
-        <div class="desktop-icon"><span class="icon-image">🔫</span><span class="icon-label">Баллистика</span></div>
-        <div class="desktop-icon"><span class="icon-image">🌉</span><span class="icon-label">SF Карта</span></div>
-    </div>
-    <div class="icon-row">
-        <!-- ВОТ ЭТА СТРОКА ДОЛЖНА БЫТЬ С ID -->
-        <div class="desktop-icon" id="assetsIcon">
-            <span class="icon-image">🛡️</span>
-            <span class="icon-label">Активы агентства</span>
-        </div>
-        <div class="desktop-icon"><span class="icon-image">📑</span><span class="icon-label">Служебные записки</span></div>
-        <div class="desktop-icon"><span class="icon-image">🗄️</span><span class="icon-label">База данных</span></div>
-    </div>
-    <div class="icon-row">
-        <div class="desktop-icon"><span class="icon-image">👥</span><span class="icon-label">Агенты</span></div>
-    </div>
-</div>
-                        <!-- ОКНО ТЕРМИНАЛА -->
+        <!-- ОСНОВНАЯ ОБЛАСТЬ -->
+        <div class="workspace">
+            <!-- ИКОНКИ -->
+            <div class="desktop-icons">
+                <div class="icon-row">
+                    <div class="desktop-icon"><span class="icon-image">📁</span><span class="icon-label">Дела</span></div>
+                    <div class="desktop-icon"><span class="icon-image">🔫</span><span class="icon-label">Баллистика</span></div>
+                    <div class="desktop-icon"><span class="icon-image">🌉</span><span class="icon-label">SF Карта</span></div>
+                </div>
+                <div class="icon-row">
+                    <div class="desktop-icon" id="assetsIcon">
+                        <span class="icon-image">🛡️</span>
+                        <span class="icon-label">Активы агентства</span>
+                    </div>
+                    <div class="desktop-icon"><span class="icon-image">📑</span><span class="icon-label">Служебные записки</span></div>
+                    <div class="desktop-icon"><span class="icon-image">🗄️</span><span class="icon-label">База данных</span></div>
+                </div>
+                <div class="icon-row">
+                    <div class="desktop-icon"><span class="icon-image">👥</span><span class="icon-label">Агенты</span></div>
+                </div>
+            </div>
+
+            <!-- ОКНО ТЕРМИНАЛА -->
             <div class="app-window" id="terminalWindow" style="display: none;">
                 <div class="window-header" id="windowHeader">
                     <div class="window-title">
@@ -509,6 +507,7 @@
                     </div>
                     <div class="window-controls">
                         <span id="minimizeBtn">─</span>
+                        <span id="maximizeBtn">□</span>
                         <span id="closeBtn">✕</span>
                     </div>
                 </div>
@@ -559,6 +558,7 @@
         const terminalWindow = document.getElementById('terminalWindow');
         const closeBtn = document.getElementById('closeBtn');
         const minimizeBtn = document.getElementById('minimizeBtn');
+        const maximizeBtn = document.getElementById('maximizeBtn');
         const terminalTabs = document.querySelectorAll('.terminal-tab');
         const terminalContent = document.getElementById('terminalContent');
         const header = document.getElementById('windowHeader');
@@ -570,53 +570,59 @@
                 <div class="terminal-line"><span class="terminal-prompt">[SYSTEM]></span> Доступ: <span class="highlight">РАЗРЕШЁН (УРОВЕНЬ 4)</span></div>
                 <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Супер щит USM (Маршалы)</span></div>
                 <ul class="specs-list">
-                    <li><strong>Баллистическая защита:</strong> Уровень IV (до 40 попаданий)</li>
-                    <li><strong>Смотровое окно:</strong> Бронестекло 50мм</li>
-                    <li><strong>Вес:</strong> 35 кг</li>
-                    <li><strong>Особенность:</strong> Фонарь-ослепитель</li>
-                    <li><strong>На вооружении:</strong> USM (Маршалы)</li>
+                    <li><strong>Баллистическая защита:</strong> Уровень IV (до 40 попаданий из автомата)</li>
+                    <li><strong>Смотровое окно:</strong> Бронестекло 50мм, пуленепробиваемое</li>
+                    <li><strong>Вес:</strong> 35 кг с тактическим снаряжением</li>
+                    <li><strong>Особенность:</strong> Встроенный фонарь-ослепитель и система подавления</li>
+                    <li><strong>На вооружении:</strong> Подразделения USM (Маршалы США)</li>
+                    <li><strong>Примечание:</strong> Используется при штурме особо опасных объектов</li>
                 </ul>
             `,
             cloaker: `
                 <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о Клокерах...</div>
                 <div class="terminal-line"><span class="terminal-prompt">[WARNING]></span> <span class="highlight">ОСОБО ОПАСНЫЙ ОБЪЕКТ</span></div>
-                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Клокер (Спецагент)</span></div>
+                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Клокер (Спецагент подавления)</span></div>
                 <ul class="specs-list">
-                    <li><strong>Экипировка:</strong> Тактический костюм</li>
-                    <li><strong>Оружие:</strong> MP5 с перцовыми зарядами</li>
-                    <li><strong>Тактика:</strong> Атака из засады</li>
-                    <li><strong>Особая способность:</strong> Электрошокер</li>
+                    <li><strong>Экипировка:</strong> Тактический костюм с усиленной защитой</li>
+                    <li><strong>Основное оружие:</strong> MP5 с перцовыми зарядами (нелетальное подавление)</li>
+                    <li><strong>Тактика:</strong> Быстрое перемещение, атака из засады</li>
+                    <li><strong>Особая способность:</strong> Электрошокер (мгновенное обездвиживание)</li>
+                    <li><strong>Статус:</strong> В активном розыске</li>
                 </ul>
             `,
             heavy: `
                 <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о тяжёлых бойцах USM...</div>
-                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Тяжёлые бойцы USM</span></div>
+                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Тяжёлые бойцы USM (Маршалы)</span></div>
                 <ul class="specs-list">
-                    <li><strong>Броня:</strong> Керамическая класса III+</li>
-                    <li><strong>Вооружение:</strong> M4 с гранатомётами</li>
-                    <li><strong>Подготовка:</strong> Спецназ</li>
-                    <li><strong>Задача:</strong> Штурм укреплений</li>
+                    <li><strong>Броня:</strong> Композитная керамическая броня класса III+</li>
+                    <li><strong>Вооружение:</strong> Автоматы M4 с подствольными гранатомётами</li>
+                    <li><strong>Подготовка:</strong> Спецназ, тактика городского боя</li>
+                    <li><strong>Задача:</strong> Штурм укреплённых позиций, подавление огневых точек</li>
+                    <li><strong>Численность:</strong> Отдельные тактические группы</li>
                 </ul>
             `,
             locks: `
                 <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о системе замков...</div>
-                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">5-кратная защита</span></div>
+                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">5-кратная система защиты замков</span></div>
                 <ul class="specs-list">
-                    <li><strong>Уровень 1:</strong> Механический замок</li>
-                    <li><strong>Уровень 2:</strong> Электронный код</li>
-                    <li><strong>Уровень 3:</strong> Биометрия</li>
-                    <li><strong>Уровень 4:</strong> Сетчатка глаза</li>
-                    <li><strong>Уровень 5:</strong> Распознавание голоса</li>
+                    <li><strong>Уровень 1:</strong> Механический замок высокой секретности</li>
+                    <li><strong>Уровень 2:</strong> Электронный кодовый замок (6-значный код)</li>
+                    <li><strong>Уровень 3:</strong> Биометрический сканер (отпечаток пальца)</li>
+                    <li><strong>Уровень 4:</strong> Сканер сетчатки глаза</li>
+                    <li><strong>Уровень 5:</strong> Система распознавания голоса</li>
+                    <li><strong>Время взлома:</strong> Оценочно 45+ минут профессионалом</li>
                 </ul>
             `,
             mp5: `
                 <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о MP5 с перцовыми зарядами...</div>
-                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">MP5K с перцовыми зарядами</span></div>
+                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">MP5K с перцовыми зарядами (для Клокеров)</span></div>
                 <ul class="specs-list">
-                    <li><strong>База:</strong> HK MP5K</li>
-                    <li><strong>Боеприпасы:</strong> 9mm перцовые гранулы</li>
-                    <li><strong>Эффект:</strong> Раздражение глаз и дыхания</li>
-                    <li><strong>Дальность:</strong> До 50 м</li>
+                    <li><strong>База:</strong> HK MP5K (короткоствольный вариант)</li>
+                    <li><strong>Боеприпасы:</strong> 9mm перцовые гранулы (нелетальные)</li>
+                    <li><strong>Эффект:</strong> Сильное раздражение глаз и дыхательных путей</li>
+                    <li><strong>Дальность:</strong> До 50 метров эффективно</li>
+                    <li><strong>Применение:</strong> Подавление массовых беспорядков, задержание без жертв</li>
+                    <li><strong>На вооружении:</strong> Клокеры, спецподразделения</li>
                 </ul>
             `
         };
@@ -659,39 +665,15 @@
         setInterval(updateTime, 1000);
 
         // Открытие терминала
-// РАЗВОРАЧИВАНИЕ НА ВЕСЬ ЭКРАН
-const maximizeBtn = document.getElementById('maximizeBtn');
-let isMaximized = false;
-let previousSize = {};
-
-maximizeBtn.addEventListener('click', () => {
-    if (!isMaximized) {
-        // Запоминаем текущие размеры и позицию
-        previousSize = {
-            width: terminalWindow.style.width,
-            height: terminalWindow.style.height,
-            top: terminalWindow.style.top,
-            left: terminalWindow.style.left
-        };
-        
-        // На весь экран
-        terminalWindow.style.width = '100%';
-        terminalWindow.style.height = 'calc(100% - 120px)'; // Учитываем верхнюю и нижнюю панели
-        terminalWindow.style.top = '60px'; // Под верхней панелью
-        terminalWindow.style.left = '0';
-        terminalWindow.classList.add('window-maximized');
-        maximizeBtn.textContent = '❐'; // Меняем иконку
-    } else {
-        // Возвращаем как было
-        terminalWindow.style.width = previousSize.width || '1000px';
-        terminalWindow.style.height = previousSize.height || '650px';
-        terminalWindow.style.top = previousSize.top || '80px';
-        terminalWindow.style.left = previousSize.left || '250px';
-        terminalWindow.classList.remove('window-maximized');
-        maximizeBtn.textContent = '□';
-    }
-    isMaximized = !isMaximized;
-});
+        if (assetsIcon) {
+            assetsIcon.addEventListener('click', () => {
+                terminalWindow.style.display = 'flex';
+                terminalContent.innerHTML = tabContent.shield;
+                // Активируем первую вкладку
+                terminalTabs.forEach(t => t.classList.remove('active'));
+                terminalTabs[0].classList.add('active');
+            });
+        }
 
         // Закрытие
         closeBtn.addEventListener('click', () => {
@@ -700,6 +682,36 @@ maximizeBtn.addEventListener('click', () => {
 
         minimizeBtn.addEventListener('click', () => {
             terminalWindow.style.display = 'none';
+        });
+
+        // Разворачивание
+        let isMaximized = false;
+        let previousSize = {};
+
+        maximizeBtn.addEventListener('click', () => {
+            if (!isMaximized) {
+                previousSize = {
+                    width: terminalWindow.style.width,
+                    height: terminalWindow.style.height,
+                    top: terminalWindow.style.top,
+                    left: terminalWindow.style.left
+                };
+                
+                terminalWindow.style.width = '100%';
+                terminalWindow.style.height = 'calc(100% - 120px)';
+                terminalWindow.style.top = '60px';
+                terminalWindow.style.left = '0';
+                terminalWindow.classList.add('window-maximized');
+                maximizeBtn.textContent = '❐';
+            } else {
+                terminalWindow.style.width = previousSize.width || '900px';
+                terminalWindow.style.height = previousSize.height || '600px';
+                terminalWindow.style.top = previousSize.top || '80px';
+                terminalWindow.style.left = previousSize.left || '200px';
+                terminalWindow.classList.remove('window-maximized');
+                maximizeBtn.textContent = '□';
+            }
+            isMaximized = !isMaximized;
         });
 
         // Переключение вкладок
@@ -711,85 +723,72 @@ maximizeBtn.addEventListener('click', () => {
             });
         });
 
-// ПЕРЕТАСКИВАНИЕ ОКНА (ИСПРАВЛЕННОЕ)
-let isDragging = false;
-let offsetX, offsetY;
+        // Перетаскивание
+        let isDragging = false;
+        let offsetX, offsetY;
 
-// ВАЖНО: используем mousedown на всём хедере, но не даём перетаскивать при клике на кнопки
-header.addEventListener('mousedown', (e) => {
-    // Не перетаскиваем, если кликнули на кнопки управления (закрыть/свернуть)
-    if (e.target.closest('.window-controls')) return;
-    
-    isDragging = true;
-    const rect = terminalWindow.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-    
-    // Добавляем класс для изменения курсора
-    terminalWindow.style.cursor = 'grabbing';
-});
+        header.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.window-controls') || isMaximized) return;
+            isDragging = true;
+            const rect = terminalWindow.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+        });
 
-document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    
-    e.preventDefault();
-    
-    // Вычисляем новую позицию
-    let newX = e.clientX - offsetX;
-    let newY = e.clientY - offsetY;
-    
-    // Ограничиваем, чтобы окно не уходило за пределы экрана
-    const maxX = window.innerWidth - terminalWindow.offsetWidth;
-    const maxY = window.innerHeight - terminalWindow.offsetHeight;
-    
-    newX = Math.min(Math.max(0, newX), maxX);
-    newY = Math.min(Math.max(0, newY), maxY);
-    
-    terminalWindow.style.left = newX + 'px';
-    terminalWindow.style.top = newY + 'px';
-});
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            let newX = e.clientX - offsetX;
+            let newY = e.clientY - offsetY;
+            
+            const maxX = window.innerWidth - terminalWindow.offsetWidth;
+            const maxY = window.innerHeight - terminalWindow.offsetHeight - 120;
+            
+            newX = Math.min(Math.max(0, newX), maxX);
+            newY = Math.min(Math.max(60, newY), maxY);
+            
+            terminalWindow.style.left = newX + 'px';
+            terminalWindow.style.top = newY + 'px';
+        });
 
-document.addEventListener('mouseup', () => {
-    if (isDragging) {
-        isDragging = false;
-        terminalWindow.style.cursor = 'default';
-    }
-});
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
 
-// ===== ТАЧ-СОБЫТИЯ ДЛЯ МОБИЛОК =====
-header.addEventListener('touchstart', (e) => {
-    if (e.target.closest('.window-controls')) return;
-    
-    e.preventDefault();
-    const touch = e.touches[0];
-    const rect = terminalWindow.getBoundingClientRect();
-    offsetX = touch.clientX - rect.left;
-    offsetY = touch.clientY - rect.top;
-    isDragging = true;
-});
+        // Тач-события для мобилок
+        header.addEventListener('touchstart', (e) => {
+            if (e.target.closest('.window-controls') || isMaximized) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = terminalWindow.getBoundingClientRect();
+            offsetX = touch.clientX - rect.left;
+            offsetY = touch.clientY - rect.top;
+            isDragging = true;
+        });
 
-document.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    
-    const touch = e.touches[0];
-    let newX = touch.clientX - offsetX;
-    let newY = touch.clientY - offsetY;
-    
-    const maxX = window.innerWidth - terminalWindow.offsetWidth;
-    const maxY = window.innerHeight - terminalWindow.offsetHeight;
-    
-    newX = Math.min(Math.max(0, newX), maxX);
-    newY = Math.min(Math.max(0, newY), maxY);
-    
-    terminalWindow.style.left = newX + 'px';
-    terminalWindow.style.top = newY + 'px';
-});
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            let newX = touch.clientX - offsetX;
+            let newY = touch.clientY - offsetY;
+            
+            const maxX = window.innerWidth - terminalWindow.offsetWidth;
+            const maxY = window.innerHeight - terminalWindow.offsetHeight - 120;
+            
+            newX = Math.min(Math.max(0, newX), maxX);
+            newY = Math.min(Math.max(60, newY), maxY);
+            
+            terminalWindow.style.left = newX + 'px';
+            terminalWindow.style.top = newY + 'px';
+        });
 
-document.addEventListener('touchend', () => {
-    isDragging = false;
-});
-        
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
         // Заглушки для других иконок
         document.querySelectorAll('.desktop-icon:not(#assetsIcon)').forEach(icon => {
             icon.addEventListener('click', () => {
@@ -797,19 +796,12 @@ document.addEventListener('touchend', () => {
             });
         });
 
-        // ЗАПОМИНАЕМ РАЗМЕРЫ ПРИ РЕСАЙЗЕ ОКНА БРАУЗЕРА
-window.addEventListener('resize', () => {
-    if (isMaximized) {
-        terminalWindow.style.height = 'calc(100% - 120px)';
-    }
-});
-
-// ФИКС ДЛЯ МОБИЛОК
-if ('ontouchstart' in window) {
-    document.body.classList.add('touch-device');
-                        }
+        // Ресайз окна
+        window.addEventListener('resize', () => {
+            if (isMaximized) {
+                terminalWindow.style.height = 'calc(100% - 120px)';
+            }
+        });
     </script>
 </body>
 </html>
-    
-        
