@@ -540,9 +540,16 @@
                         <span class="icon-image">🛡️</span>
                         <span class="icon-label">Активы агентства</span>
                     </div>
-                    <div class="desktop-icon"><span class="icon-image">📑</span><span class="icon-label">Служебные записки</span></div>
-                    <div class="desktop-icon"><span class="icon-image">🗄️</span><span class="icon-label">База данных</span></div>
-                </div>
+                    <div class="icon-row">
+    <div class="desktop-icon" data-app="memos">
+        <span class="icon-image">📑</span>
+        <span class="icon-label">Служебные записки</span>
+    </div>
+    <div class="desktop-icon" data-app="database">
+        <span class="icon-image">🗄️</span>
+        <span class="icon-label">База данных</span>
+    </div>
+    </div>
                 <div class="icon-row">
                     <div class="desktop-icon"><span class="icon-image">👥</span><span class="icon-label">Агенты</span></div>
                 </div>
@@ -700,6 +707,84 @@
                 </ul>
             `
         };
+
+        // КОНТЕНТ ДЛЯ БАЗЫ ДАННЫХ
+const dbContent = {
+    russian: `
+        <div class="db-section-title">🇷🇺 РУССКАЯ БРАТВА (Сан-Фиерро)</div>
+        <div class="database-list">
+            <div class="database-item">
+                <div>
+                    <div class="db-name">Михаил Фаустин</div>
+                    <div class="db-description">Главарь русской братвы. Связи с Liberty City.</div>
+                </div>
+                <div class="db-role">РОЗЫСК</div>
+            </div>
+            <div class="database-item">
+                <div>
+                    <div class="db-name">Сокол</div>
+                    <div class="db-description">Бывший спецназ ГРУ. Подозревается в сотрудничестве с братвой.</div>
+                </div>
+                <div class="db-role">ПОД НАБЛЮДЕНИЕМ</div>
+            </div>
+            <div class="database-item">
+                <div>
+                    <div class="db-name">Дмитрий Раскалов</div>
+                    <div class="db-description">Правая рука Фаустина.</div>
+                </div>
+                <div class="db-role">РОЗЫСК</div>
+            </div>
+        </div>
+    `,
+    triads: `
+        <div class="db-section-title">🀄 КИТАЙСКАЯ ТРИАДА (доки Сан-Фиерро)</div>
+        <div class="database-list">
+            <div class="database-item">
+                <div>
+                    <div class="db-name">Минь Хо</div>
+                    <div class="db-description">Глава триады. Контролирует доки.</div>
+                </div>
+                <div class="db-role">ПОД НАБЛЮДЕНИЕМ</div>
+            </div>
+        </div>
+    `,
+    veterans: `
+        <div class="db-section-title">👴 ВЕТЕРАНЫ</div>
+        <div class="database-list">
+            <div class="database-item">
+                <div>
+                    <div class="db-name">Фрэнк "Полковник"</div>
+                    <div class="db-description">Лидер ветеранов.</div>
+                </div>
+                <div class="db-role">ПОД НАБЛЮДЕНИЕМ</div>
+            </div>
+        </div>
+    `,
+    corrupt: `
+        <div class="db-section-title">🎯 КОРРУПЦИЯ</div>
+        <div class="database-list">
+            <div class="database-item">
+                <div>
+                    <div class="db-name">Иван Драго</div>
+                    <div class="db-description">Мэр Сан-Фиерро. Связи с братвой.</div>
+                </div>
+                <div class="db-role">РАССЛЕДОВАНИЕ</div>
+            </div>
+        </div>
+    `,
+    payday: `
+        <div class="db-section-title">🦅 PAYDAY</div>
+        <div class="database-list">
+            <div class="database-item">
+                <div>
+                    <div class="db-name">Даллас</div>
+                    <div class="db-description">Лидер.</div>
+                </div>
+                <div class="db-role">ОСОБО ОПАСЕН</div>
+            </div>
+        </div>
+    `
+};
 
         // Вход в систему
         function handleLogin() {
