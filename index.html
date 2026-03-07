@@ -630,6 +630,14 @@
     </div>
 
     <script>
+        // Обновление времени
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('realTime').textContent = 
+                now.toLocaleTimeString('ru-RU', { hour12: false });
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
         
         // Данные пользователей
         const users = {
