@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAnet.OS v.1.43 — ФБР Сан-Андреас</title>
+    <title>SAnet.OS v.2.0 — ФБР Сан-Андреас</title>
     <style>
         * {
             margin: 0;
@@ -14,13 +14,12 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-            
             height: 100vh;
             overflow: hidden;
             background-color: #0a0f1a;
         }
 
+        /* ===== ЭКРАН ВХОДА ===== */
         .login-screen {
             position: fixed;
             top: 0;
@@ -123,7 +122,9 @@
             font-size: 14px;
         }
 
-        .desktop {
+
+        /* ===== РАБОЧИЙ СТОЛ ===== */
+.desktop {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -209,7 +210,8 @@
     gap: 20px;
     align-items: center;
     color: #8a9bb5;
-            }
+}
+
 .workspace {
     flex: 1;
     padding: 30px;
@@ -251,6 +253,8 @@
     font-size: 48px;
     margin-bottom: 8px;
     filter: drop-shadow(0 0 5px #c49e3f);
+    width: 48px;
+    height: 48px;
 }
 
 .icon-label {
@@ -265,43 +269,46 @@
     border: 1px solid #2a3f5a;
 }
 
-.bottom-bar {
-    background: #1a2a3f;
-    color: #8a9bb5;
-    padding: 15px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 14px;
-    z-index: 10;
-    border-top: 3px solid #c49e3f;
-    min-height: 60px;
-    flex-shrink: 0;
-    margin-top: auto; /* Это прижмёт панель к низу */
-}
+                .bottom-bar {
+            background: #1a2a3f;
+            color: #8a9bb5;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            z-index: 10;
+            border-top: 3px solid #c49e3f;
+            min-height: 60px;
+            flex-shrink: 0;
+            margin-top: auto;
+        }
 
-.bottom-left {
-    display: flex;
-    gap: 20px;
-}
+        .bottom-left {
+            display: flex;
+            gap: 20px;
+        }
 
-.bottom-right {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
+        .bottom-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
 
-.real-time {
-    background: #0f1a2a;
-    padding: 8px 20px;
-    border-radius: 30px;
-    font-family: monospace;
-    font-size: 18px;
-    letter-spacing: 1px;
-    color: #c49e3f;
-    border: 2px solid #c49e3f;
-    }
-                .app-window {
+        .real-time {
+            background: #0f1a2a;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-family: monospace;
+            font-size: 20px;
+            letter-spacing: 1px;
+            color: #c49e3f;
+            border: 2px solid #c49e3f;
+            font-weight: bold;
+        }
+
+        /* ===== ОКНА ПРИЛОЖЕНИЙ ===== */
+        .app-window {
             position: absolute;
             top: 80px;
             left: 200px;
@@ -400,40 +407,6 @@
             line-height: 1.6;
         }
 
-        .terminal-line {
-            margin-bottom: 8px;
-            border-bottom: 1px dotted #2a3f5a;
-            padding-bottom: 5px;
-        }
-
-        .terminal-prompt {
-            color: #c49e3f;
-            margin-right: 10px;
-        }
-
-        .highlight {
-            color: #ffb86b;
-            font-weight: bold;
-        }
-
-        .specs-list {
-            margin-left: 20px;
-            list-style: none;
-        }
-
-        .specs-list li {
-            margin-bottom: 15px;
-            border-left: 3px solid #c49e3f;
-            padding-left: 15px;
-        }
-
-        .specs-list li strong {
-            color: #c49e3f;
-            display: block;
-            margin-bottom: 5px;
-            font-size: 16px;
-        }
-
         .window-maximized {
             width: 100% !important;
             height: 100% !important;
@@ -441,61 +414,89 @@
             left: 0 !important;
             border-radius: 0 !important;
             border-width: 3px !important;
-            margin: 0 !important;
         }
 
-        /* СТИЛИ ДЛЯ БАЗЫ ДАННЫХ */
-.database-list {
-    list-style: none;
-    margin: 15px 0;
-}
-
-.database-item {
-    padding: 15px 20px;
-    margin-bottom: 10px;
-    background: #0f1a2a;
-    border-left: 4px solid #c49e3f;
-    border-radius: 0 8px 8px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.db-name {
-    font-size: 18px;
-    color: #ffffff;
-    font-weight: 600;
-}
-
-.db-role {
-    color: #c49e3f;
-    font-size: 14px;
-    background: #1a2a3f;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-}
-
-.db-description {
-    color: #8a9bb5;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-.db-section-title {
-    color: #c49e3f;
-    font-size: 20px;
-    margin: 25px 0 15px 0;
-    border-bottom: 2px solid #c49e3f;
-    padding-bottom: 8px;
-    font-weight: bold;
-}
+        /* Стили для базы данных */
+        .database-list {
+            list-style: none;
+            margin: 15px 0;
+        }
         
-.workspace {
-    flex: 1;
-    overflow: auto;
-}
+        .database-item {
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            background: #0f1a2a;
+            border-left: 4px solid #c49e3f;
+            border-radius: 0 8px 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         
+        .db-name {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .db-role {
+            color: #c49e3f;
+            font-size: 14px;
+            background: #1a2a3f;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .db-description {
+            color: #8a9bb5;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .db-section-title {
+            color: #c49e3f;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+            border-bottom: 2px solid #c49e3f;
+            padding-bottom: 8px;
+            font-weight: bold;
+        }
+
+        /* Стили для служебных записок */
+        .memo-item {
+            background: #0f1a2a;
+            border-left: 4px solid #c49e3f;
+            border-radius: 0 8px 8px 0;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .memo-title {
+            color: #c49e3f;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .memo-date {
+            color: #8a9bb5;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .memo-text {
+            color: #e0e5f0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .memo-classified {
+            color: #ff6b6b;
+            font-size: 12px;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
@@ -504,7 +505,7 @@
         <div class="login-panel">
             <div class="fbi-eagle">🦅⚖️</div>
             <h2>ФБР ОКРУГА САН-АНДРЕАС</h2>
-            <p>SAnet.OS v.1.43 • Сан-Фиерро</p>
+            <p>SAnet.OS v.2.0 • Сан-Фиерро</p>
             <div class="login-field">
                 <label>ПАРОЛЬ ДОСТУПА</label>
                 <input type="password" id="passwordInput" placeholder="Введите пароль" autofocus>
@@ -515,11 +516,11 @@
     </div>
 
     <!-- РАБОЧИЙ СТОЛ -->
-    <div class="desktop" style="display: flex; flex-direction: column; height: 100vh;">
+    <div class="desktop" id="desktop" style="display: none;">
         <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
         <div class="top-bar">
             <div class="top-bar-left">
-                <div class="sanet-brand">ФБР округа Сан-Андреас | SAnet.OS v.1.43</div>
+                <div class="sanet-brand">ФБР округа Сан-Андреас | SAnet.OS v.2.0</div>
                 <div class="user-session" id="userSession"></div>
             </div>
             <div class="top-bar-nav">
@@ -535,38 +536,49 @@
         <!-- ОСНОВНАЯ ОБЛАСТЬ -->
         <div class="workspace">
             <!-- ИКОНКИ -->
-            <!-- ИКОНКИ -->
-<div class="desktop-icons">
-    <!-- Первый ряд -->
-    <div class="icon-row">
-        <div class="desktop-icon"><span class="icon-image">📁</span><span class="icon-label">Дела</span></div>
-        <div class="desktop-icon"><span class="icon-image">🔫</span><span class="icon-label">Баллистика</span></div>
-        <div class="desktop-icon"><span class="icon-image">🌉</span><span class="icon-label">SF Карта</span></div>
-    </div>
-    
-    <!-- Второй ряд -->
-    <div class="icon-row">
-        <div class="desktop-icon" id="assetsIcon">
-            <span class="icon-image">🛡️</span>
-            <span class="icon-label">Активы агентства</span>
-        </div>
-        <div class="desktop-icon" data-app="memos">
-            <span class="icon-image">📑</span>
-            <span class="icon-label">Служебные записки</span>
-        </div>
-        <div class="desktop-icon" data-app="database">
-            <span class="icon-image">🗄️</span>
-            <span class="icon-label">База данных</span>
-        </div>
-    </div>
-    
-    <!-- Третий ряд -->
-    <div class="icon-row">
-        <div class="desktop-icon"><span class="icon-image">👥</span><span class="icon-label">Агенты</span></div>
-    </div>
-</div>
-        
-            <!-- ОКНО ТЕРМИНАЛА -->
+            <div class="desktop-icons">
+                <!-- Первый ряд -->
+                <div class="icon-row">
+                    <div class="desktop-icon" data-app="cases">
+                        <span class="icon-image">📁</span>
+                        <span class="icon-label">Дела</span>
+                    </div>
+                    <div class="desktop-icon" data-app="ballistics">
+                        <span class="icon-image">🔫</span>
+                        <span class="icon-label">Баллистика</span>
+                    </div>
+                    <div class="desktop-icon" data-app="sfmap">
+                        <span class="icon-image">🌉</span>
+                        <span class="icon-label">SF Карта</span>
+                    </div>
+                </div>
+                
+                <!-- Второй ряд -->
+                <div class="icon-row">
+                    <div class="desktop-icon" id="assetsIcon">
+                        <span class="icon-image">🛡️</span>
+                        <span class="icon-label">Активы агентства</span>
+                    </div>
+                    <div class="desktop-icon" data-app="memos" id="memosIcon">
+                        <span class="icon-image">📑</span>
+                        <span class="icon-label">Служебные записки</span>
+                    </div>
+                    <div class="desktop-icon" data-app="database" id="databaseIcon">
+                        <span class="icon-image">🗄️</span>
+                        <span class="icon-label">База данных</span>
+                    </div>
+                </div>
+                
+                <!-- Третий ряд -->
+                <div class="icon-row">
+                    <div class="desktop-icon" data-app="agents">
+                        <span class="icon-image">👥</span>
+                        <span class="icon-label">Агенты</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ОКНО АКТИВОВ -->
             <div class="app-window" id="terminalWindow" style="display: none;">
                 <div class="window-header" id="windowHeader">
                     <div class="window-title">
@@ -590,31 +602,49 @@
 
                 <div class="terminal-content" id="terminalContent"></div>
             </div>
-            <!-- ОКНО БАЗЫ ДАННЫХ -->
-<div class="app-window" id="databaseWindow" style="display: none;">
-    <div class="window-header" id="dbWindowHeader">
-        <div class="window-title">
-            <span>🗄️</span>
-            <span>База данных подозреваемых — УРОВЕНЬ 4</span>
-        </div>
-        <div class="window-controls">
-            <span id="dbMinimizeBtn">─</span>
-            <span id="dbMaximizeBtn">□</span>
-            <span id="dbCloseBtn">✕</span>
-        </div>
-    </div>
-    
-    <div class="terminal-tabs">
-        <div class="terminal-tab active" data-db="russian">🇷🇺 РУССКАЯ БРАТВА</div>
-        <div class="terminal-tab" data-db="triads">🀄 ТРИАДЫ</div>
-        <div class="terminal-tab" data-db="veterans">👴 ВЕТЕРАНЫ</div>
-        <div class="terminal-tab" data-db="corrupt">🎯 КОРРУПЦИЯ</div>
-        <div class="terminal-tab" data-db="payday">🦅 PAYDAY</div>
-    </div>
 
-    <div class="terminal-content" id="databaseContent"></div>
-</div>
-</div>
+            <!-- ОКНО БАЗЫ ДАННЫХ -->
+            <div class="app-window" id="databaseWindow" style="display: none;">
+                <div class="window-header" id="dbWindowHeader">
+                    <div class="window-title">
+                        <span>🗄️</span>
+                        <span>База данных подозреваемых — УРОВЕНЬ 4</span>
+                    </div>
+                    <div class="window-controls">
+                        <span id="dbMinimizeBtn">─</span>
+                        <span id="dbMaximizeBtn">□</span>
+                        <span id="dbCloseBtn">✕</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-tabs">
+                    <div class="terminal-tab active" data-db="russian">🇷🇺 РУССКАЯ БРАТВА</div>
+                    <div class="terminal-tab" data-db="triads">🀄 ТРИАДЫ</div>
+                    <div class="terminal-tab" data-db="veterans">👴 ВЕТЕРАНЫ</div>
+                    <div class="terminal-tab" data-db="corrupt">🎯 КОРРУПЦИЯ</div>
+                    <div class="terminal-tab" data-db="payday">🦅 PAYDAY</div>
+                </div>
+
+                <div class="terminal-content" id="databaseContent"></div>
+            </div>
+
+            <!-- ОКНО СЛУЖЕБНЫХ ЗАПИСОК -->
+            <div class="app-window" id="memosWindow" style="display: none;">
+                <div class="window-header" id="memosWindowHeader">
+                    <div class="window-title">
+                        <span>📑</span>
+                        <span>Служебные записки — Документооборот ФБР</span>
+                    </div>
+                    <div class="window-controls">
+                        <span id="memosMinimizeBtn">─</span>
+                        <span id="memosMaximizeBtn">□</span>
+                        <span id="memosCloseBtn">✕</span>
+                    </div>
+                </div>
+
+                <div class="terminal-content" id="memosContent"></div>
+            </div>
+        </div>
 
         <!-- НИЖНЯЯ ПАНЕЛЬ -->
         <div class="bottom-bar">
@@ -629,17 +659,8 @@
         </div>
     </div>
 
-    <script>
-        // Обновление времени
-        function updateTime() {
-            const now = new Date();
-            document.getElementById('realTime').textContent = 
-                now.toLocaleTimeString('ru-RU', { hour12: false });
-        }
-        updateTime();
-        setInterval(updateTime, 1000);
-        
-        // Данные пользователей
+        <script>
+        // ===== ДАННЫЕ ПОЛЬЗОВАТЕЛЕЙ =====
         const users = {
             'FBI565FULLCLEAR!': { name: 'Майк Малас', role: 'ДИРЕКТОР ФБР' },
             'FBI999SPEC!': { name: 'Регинальд Вон Равенхорст', role: 'СПЕЦИАЛЬНЫЙ АГЕНТ' },
@@ -647,7 +668,7 @@
             'guest1!': { name: '', role: 'guest' }
         };
 
-        // Элементы
+        // ===== ЭЛЕМЕНТЫ =====
         const loginScreen = document.getElementById('loginScreen');
         const desktop = document.getElementById('desktop');
         const passwordInput = document.getElementById('passwordInput');
@@ -655,158 +676,8 @@
         const loginError = document.getElementById('loginError');
         const userSession = document.getElementById('userSession');
         const realTime = document.getElementById('realTime');
-        const assetsIcon = document.getElementById('assetsIcon');
-        const terminalWindow = document.getElementById('terminalWindow');
-        const closeBtn = document.getElementById('closeBtn');
-        const minimizeBtn = document.getElementById('minimizeBtn');
-        const maximizeBtn = document.getElementById('maximizeBtn');
-        const terminalTabs = document.querySelectorAll('.terminal-tab');
-        const terminalContent = document.getElementById('terminalContent');
-        const header = document.getElementById('windowHeader');
 
-        // Контент для вкладок
-        const tabContent = {
-            shield: `
-                <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о Супер Щитах USM...</div>
-                <div class="terminal-line"><span class="terminal-prompt">[SYSTEM]></span> Доступ: <span class="highlight">РАЗРЕШЁН (УРОВЕНЬ 4)</span></div>
-                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Супер щит USM (Маршалы)</span></div>
-                <ul class="specs-list">
-                    <li><strong>Баллистическая защита:</strong> Уровень IV (до 40 попаданий из автомата)</li>
-                    <li><strong>Смотровое окно:</strong> Бронестекло 50мм, пуленепробиваемое</li>
-                    <li><strong>Вес:</strong> 35 кг с тактическим снаряжением</li>
-                    <li><strong>Особенность:</strong> Встроенный фонарь-ослепитель и система подавления</li>
-                    <li><strong>На вооружении:</strong> Подразделения USM (Маршалы США)</li>
-                    <li><strong>Примечание:</strong> Используется при штурме особо опасных объектов</li>
-                </ul>
-            `,
-            cloaker: `
-                <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о Клокерах...</div>
-                <div class="terminal-line"><span class="terminal-prompt">[WARNING]></span> <span class="highlight">ОСОБО ОПАСНЫЙ ОБЪЕКТ</span></div>
-                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Клокер (Спецагент подавления)</span></div>
-                <ul class="specs-list">
-                    <li><strong>Экипировка:</strong> Тактический костюм с усиленной защитой</li>
-                    <li><strong>Основное оружие:</strong> MP5 с перцовыми зарядами (нелетальное подавление)</li>
-                    <li><strong>Тактика:</strong> Быстрое перемещение, атака из засады</li>
-                    <li><strong>Особая способность:</strong> Электрошокер (мгновенное обездвиживание)</li>
-                    <li><strong>Статус:</strong> В активном розыске</li>
-                </ul>
-            `,
-            heavy: `
-                <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о тяжёлых бойцах USM...</div>
-                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Тяжёлые бойцы USM (Маршалы)</span></div>
-                <ul class="specs-list">
-                    <li><strong>Броня:</strong> Композитная керамическая броня класса III+</li>
-                    <li><strong>Вооружение:</strong> Автоматы M4 с подствольными гранатомётами</li>
-                    <li><strong>Подготовка:</strong> Спецназ, тактика городского боя</li>
-                    <li><strong>Задача:</strong> Штурм укреплённых позиций, подавление огневых точек</li>
-                    <li><strong>Численность:</strong> Отдельные тактические группы</li>
-                </ul>
-            `,
-            locks: `
-                <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о системе замков...</div>
-                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">5-кратная система защиты замков</span></div>
-                <ul class="specs-list">
-                    <li><strong>Уровень 1:</strong> Механический замок высокой секретности</li>
-                    <li><strong>Уровень 2:</strong> Электронный кодовый замок (6-значный код)</li>
-                    <li><strong>Уровень 3:</strong> Биометрический сканер (отпечаток пальца)</li>
-                    <li><strong>Уровень 4:</strong> Сканер сетчатки глаза</li>
-                    <li><strong>Уровень 5:</strong> Система распознавания голоса</li>
-                    <li><strong>Время взлома:</strong> Оценочно 45+ минут профессионалом</li>
-                </ul>
-            `,
-            mp5: `
-                <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о MP5 с перцовыми зарядами...</div>
-                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">MP5K с перцовыми зарядами (для Клокеров)</span></div>
-                <ul class="specs-list">
-                    <li><strong>База:</strong> HK MP5K (короткоствольный вариант)</li>
-                    <li><strong>Боеприпасы:</strong> 9mm перцовые гранулы (нелетальные)</li>
-                    <li><strong>Эффект:</strong> Сильное раздражение глаз и дыхательных путей</li>
-                    <li><strong>Дальность:</strong> До 50 метров эффективно</li>
-                    <li><strong>Применение:</strong> Подавление массовых беспорядков, задержание без жертв</li>
-                    <li><strong>На вооружении:</strong> Клокеры, спецподразделения</li>
-                </ul>
-            `
-        };
-
-        // КОНТЕНТ ДЛЯ БАЗЫ ДАННЫХ
-const dbContent = {
-    russian: `
-        <div class="db-section-title">🇷🇺 РУССКАЯ БРАТВА (Сан-Фиерро)</div>
-        <div class="database-list">
-            <div class="database-item">
-                <div>
-                    <div class="db-name">Михаил Фаустин</div>
-                    <div class="db-description">Главарь русской братвы. Связи с Liberty City.</div>
-                </div>
-                <div class="db-role">РОЗЫСК</div>
-            </div>
-            <div class="database-item">
-                <div>
-                    <div class="db-name">Сокол</div>
-                    <div class="db-description">Бывший спецназ ГРУ. Подозревается в сотрудничестве с братвой.</div>
-                </div>
-                <div class="db-role">ПОД НАБЛЮДЕНИЕМ</div>
-            </div>
-            <div class="database-item">
-                <div>
-                    <div class="db-name">Дмитрий Раскалов</div>
-                    <div class="db-description">Правая рука Фаустина.</div>
-                </div>
-                <div class="db-role">РОЗЫСК</div>
-            </div>
-        </div>
-    `,
-    triads: `
-        <div class="db-section-title">🀄 КИТАЙСКАЯ ТРИАДА (доки Сан-Фиерро)</div>
-        <div class="database-list">
-            <div class="database-item">
-                <div>
-                    <div class="db-name">Минь Хо</div>
-                    <div class="db-description">Глава триады. Контролирует доки.</div>
-                </div>
-                <div class="db-role">ПОД НАБЛЮДЕНИЕМ</div>
-            </div>
-        </div>
-    `,
-    veterans: `
-        <div class="db-section-title">👴 ВЕТЕРАНЫ</div>
-        <div class="database-list">
-            <div class="database-item">
-                <div>
-                    <div class="db-name">Фрэнк "Полковник"</div>
-                    <div class="db-description">Лидер ветеранов.</div>
-                </div>
-                <div class="db-role">ПОД НАБЛЮДЕНИЕМ</div>
-            </div>
-        </div>
-    `,
-    corrupt: `
-        <div class="db-section-title">🎯 КОРРУПЦИЯ</div>
-        <div class="database-list">
-            <div class="database-item">
-                <div>
-                    <div class="db-name">Иван Драго</div>
-                    <div class="db-description">Мэр Сан-Фиерро. Связи с братвой.</div>
-                </div>
-                <div class="db-role">РАССЛЕДОВАНИЕ</div>
-            </div>
-        </div>
-    `,
-    payday: `
-        <div class="db-section-title">🦅 PAYDAY</div>
-        <div class="database-list">
-            <div class="database-item">
-                <div>
-                    <div class="db-name">Даллас</div>
-                    <div class="db-description">Лидер.</div>
-                </div>
-                <div class="db-role">ОСОБО ОПАСЕН</div>
-            </div>
-        </div>
-    `
-};
-
-        // Вход в систему
+        // ===== ВХОД В СИСТЕМУ =====
         function handleLogin() {
             const password = passwordInput.value;
             const user = users[password];
@@ -835,7 +706,7 @@ const dbContent = {
             if (e.key === 'Enter') handleLogin();
         });
 
-        // Время
+        // ===== ВРЕМЯ =====
         function updateTime() {
             const now = new Date();
             realTime.textContent = now.toLocaleTimeString('ru-RU', { hour12: false });
@@ -843,310 +714,210 @@ const dbContent = {
         updateTime();
         setInterval(updateTime, 1000);
 
-        // Открытие терминала
-        if (assetsIcon) {
-            assetsIcon.addEventListener('click', () => {
-                terminalWindow.style.display = 'flex';
-                terminalContent.innerHTML = tabContent.shield;
-                // Активируем первую вкладку
-                terminalTabs.forEach(t => t.classList.remove('active'));
-                terminalTabs[0].classList.add('active');
-            });
-        }
-
-        // Закрытие
-        closeBtn.addEventListener('click', () => {
-            terminalWindow.style.display = 'none';
-        });
-
-        minimizeBtn.addEventListener('click', () => {
-            terminalWindow.style.display = 'none';
-        });
-
-        // Разворачивание
-        let isMaximized = false;
-        let previousSize = {};
-
-        maximizeBtn.addEventListener('click', () => {
-            if (!isMaximized) {
-                previousSize = {
-                    width: terminalWindow.style.width,
-                    height: terminalWindow.style.height,
-                    top: terminalWindow.style.top,
-                    left: terminalWindow.style.left
-                };
-                
-                terminalWindow.style.width = '100%';
-                terminalWindow.style.height = 'calc(100% - 120px)';
-                terminalWindow.style.top = '60px';
-                terminalWindow.style.left = '0';
-                terminalWindow.classList.add('window-maximized');
-                maximizeBtn.textContent = '❐';
-            } else {
-                terminalWindow.style.width = previousSize.width || '900px';
-                terminalWindow.style.height = previousSize.height || '600px';
-                terminalWindow.style.top = previousSize.top || '80px';
-                terminalWindow.style.left = previousSize.left || '200px';
-                terminalWindow.classList.remove('window-maximized');
-                maximizeBtn.textContent = '□';
-            }
-            isMaximized = !isMaximized;
-        });
-
-        // Переключение вкладок
-        terminalTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                terminalTabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                terminalContent.innerHTML = tabContent[this.dataset.tab];
-            });
-        });
-
-        // Перетаскивание
-        let isDragging = false;
-        let offsetX, offsetY;
-
-        header.addEventListener('mousedown', (e) => {
-            if (e.target.closest('.window-controls') || isMaximized) return;
-            isDragging = true;
-            const rect = terminalWindow.getBoundingClientRect();
-            offsetX = e.clientX - rect.left;
-            offsetY = e.clientY - rect.top;
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            
-            let newX = e.clientX - offsetX;
-            let newY = e.clientY - offsetY;
-            
-            const maxX = window.innerWidth - terminalWindow.offsetWidth;
-            const maxY = window.innerHeight - terminalWindow.offsetHeight - 120;
-            
-            newX = Math.min(Math.max(0, newX), maxX);
-            newY = Math.min(Math.max(60, newY), maxY);
-            
-            terminalWindow.style.left = newX + 'px';
-            terminalWindow.style.top = newY + 'px';
-        });
-
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-        });
-
-        // Тач-события для мобилок
-        header.addEventListener('touchstart', (e) => {
-            if (e.target.closest('.window-controls') || isMaximized) return;
-            e.preventDefault();
-            const touch = e.touches[0];
-            const rect = terminalWindow.getBoundingClientRect();
-            offsetX = touch.clientX - rect.left;
-            offsetY = touch.clientY - rect.top;
-            isDragging = true;
-        });
-
-        document.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            
-            const touch = e.touches[0];
-            let newX = touch.clientX - offsetX;
-            let newY = touch.clientY - offsetY;
-            
-            const maxX = window.innerWidth - terminalWindow.offsetWidth;
-            const maxY = window.innerHeight - terminalWindow.offsetHeight - 120;
-            
-            newX = Math.min(Math.max(0, newX), maxX);
-            newY = Math.min(Math.max(60, newY), maxY);
-            
-            terminalWindow.style.left = newX + 'px';
-            terminalWindow.style.top = newY + 'px';
-        });
-
-        document.addEventListener('touchend', () => {
-            isDragging = false;
-        });
-
-        // Заглушки для других иконок (кроме активов и базы данных)
-document.querySelectorAll('.desktop-icon:not(#assetsIcon):not([data-app="database"])').forEach(icon => {
-    icon.addEventListener('click', () => {
-        alert('Приложение будет доступно в следующей версии');
-    });
-});
-
-        // Ресайз окна
-        window.addEventListener('resize', () => {
-            if (isMaximized) {
-                terminalWindow.style.height = 'calc(100% - 120px)';
-            }
-        });
-    </script>
-    <!-- НИЖНЯЯ ПАНЕЛЬ -->
-<div class="bottom-bar" style="background: #1a2a3f; padding: 20px 30px; border-top: 4px solid #c49e3f; display: flex; justify-content: space-between; align-items: center; min-height: 80px;">
-    <div style="display: flex; gap: 25px; color: #8a9bb5; font-size: 16px;">
-        <span>FEDERAL BUREAU OF INVESTIGATION</span>
-        <span>•</span>
-        <span>SAN ANDREAS FIELD OFFICE</span>
-    </div>
-    <div style="display: flex; align-items: center;">
-        <span id="realTime" style="background: #0f1a2a; padding: 12px 30px; border-radius: 40px; border: 2px solid #c49e3f; color: #c49e3f; font-family: monospace; font-size: 24px; font-weight: bold;">--:--:--</span>
-    </div>
-</div>
-
-<script>
-    // Обновление времени
-    function updateTime() {
-        const now = new Date();
-        document.getElementById('realTime').textContent = 
-            now.toLocaleTimeString('ru-RU', { hour12: false });
-    }
-    updateTime();
-    setInterval(updateTime, 1000);
-
-    // Редактор окна
-    window.addEventListener('resize', () => {
-        if (isMaximized) {
-            terminalWindow.style.height = 'calc(100% - 120px)';
-        }
-    });
-    // ===== ЛОГИКА ДЛЯ БАЗЫ ДАННЫХ =====
-const databaseWindow = document.getElementById('databaseWindow');
-const dbIcon = document.querySelector('.desktop-icon[data-app="database"]'); // Иконка базы данных
-const dbCloseBtn = document.getElementById('dbCloseBtn');
-const dbMinimizeBtn = document.getElementById('dbMinimizeBtn');
-const dbMaximizeBtn = document.getElementById('dbMaximizeBtn');
-const dbTabs = document.querySelectorAll('[data-db]');
-const dbContentDiv = document.getElementById('databaseContent');
-const dbHeader = document.getElementById('dbWindowHeader');
-
-// Открытие базы данных
-if (dbIcon) {
-    dbIcon.addEventListener('click', () => {
-        databaseWindow.style.display = 'flex';
-        databaseWindow.style.zIndex = '200';
-        dbContentDiv.innerHTML = dbContent.russian;
-        // Активируем первую вкладку
-        dbTabs.forEach(t => t.classList.remove('active'));
-        dbTabs[0]?.classList.add('active');
-    });
-}
-
-// Закрытие
-dbCloseBtn.addEventListener('click', () => {
-    databaseWindow.style.display = 'none';
-});
-
-dbMinimizeBtn.addEventListener('click', () => {
-    databaseWindow.style.display = 'none';
-});
-
-// Переключение вкладок
-dbTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-        dbTabs.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-        const dbKey = this.dataset.db;
-        if (dbContent[dbKey]) {
-            dbContentDiv.innerHTML = dbContent[dbKey];
-        }
-    });
-});
-
-// Перетаскивание окна базы данных
-let isDbDragging = false;
-let dbOffsetX, dbOffsetY;
-
-dbHeader.addEventListener('mousedown', (e) => {
-    if (e.target.closest('.window-controls')) return;
-    isDbDragging = true;
-    const rect = databaseWindow.getBoundingClientRect();
-    dbOffsetX = e.clientX - rect.left;
-    dbOffsetY = e.clientY - rect.top;
-});
-
-document.addEventListener('mousemove', (e) => {
-    if (!isDbDragging) return;
-    e.preventDefault();
-    
-    let newX = e.clientX - dbOffsetX;
-    let newY = e.clientY - dbOffsetY;
-    
-    const maxX = window.innerWidth - databaseWindow.offsetWidth;
-    const maxY = window.innerHeight - databaseWindow.offsetHeight - 120;
-    
-    newX = Math.min(Math.max(0, newX), maxX);
-    newY = Math.min(Math.max(60, newY), maxY);
-    
-    databaseWindow.style.left = newX + 'px';
-    databaseWindow.style.top = newY + 'px';
-});
-
-document.addEventListener('mouseup', () => {
-    isDbDragging = false;
-});
-
-// Тач-события для мобилок
-dbHeader.addEventListener('touchstart', (e) => {
-    if (e.target.closest('.window-controls')) return;
-    e.preventDefault();
-    const touch = e.touches[0];
-    const rect = databaseWindow.getBoundingClientRect();
-    dbOffsetX = touch.clientX - rect.left;
-    dbOffsetY = touch.clientY - rect.top;
-    isDbDragging = true;
-});
-
-document.addEventListener('touchmove', (e) => {
-    if (!isDbDragging) return;
-    e.preventDefault();
-    const touch = e.touches[0];
-    let newX = touch.clientX - dbOffsetX;
-    let newY = touch.clientY - dbOffsetY;
-    
-    const maxX = window.innerWidth - databaseWindow.offsetWidth;
-    const maxY = window.innerHeight - databaseWindow.offsetHeight - 120;
-    
-    newX = Math.min(Math.max(0, newX), maxX);
-    newY = Math.min(Math.max(60, newY), maxY);
-    
-    databaseWindow.style.left = newX + 'px';
-    databaseWindow.style.top = newY + 'px';
-});
-
-document.addEventListener('touchend', () => {
-    isDbDragging = false;
-});
-    // РАЗВОРАЧИВАНИЕ ДЛЯ БАЗЫ ДАННЫХ
-let isDbMaximized = false;
-let previousDbSize = {};
-
-dbMaximizeBtn.addEventListener('click', () => {
-    if (!isDbMaximized) {
-        previousDbSize = {
-            width: databaseWindow.style.width,
-            height: databaseWindow.style.height,
-            top: databaseWindow.style.top,
-            left: databaseWindow.style.left
+        // ===== КОНТЕНТ ДЛЯ АКТИВОВ =====
+        const tabContent = {
+            shield: `
+                <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о Супер Щитах USM...</div>
+                <div class="terminal-line"><span class="terminal-prompt">[SYSTEM]></span> Доступ: <span class="highlight">РАЗРЕШЁН (УРОВЕНЬ 4)</span></div>
+                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Супер щит USM (Маршалы)</span></div>
+                <ul class="specs-list">
+                    <li><strong>Баллистическая защита:</strong> Уровень IV (до 40 попаданий из автомата)</li>
+                    <li><strong>Смотровое окно:</strong> Бронестекло 50мм, пуленепробиваемое</li>
+                    <li><strong>Вес:</strong> 35 кг с тактическим снаряжением</li>
+                    <li><strong>Особенность:</strong> Встроенный фонарь-ослепитель и система подавления</li>
+                    <li><strong>На вооружении:</strong> Подразделения USM (Маршалы США)</li>
+                </ul>
+            `,
+            cloaker: `
+                <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о Клокерах...</div>
+                <div class="terminal-line"><span class="terminal-prompt">[WARNING]></span> <span class="highlight">ОСОБО ОПАСНЫЙ ОБЪЕКТ</span></div>
+                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Клокер (Спецагент подавления)</span></div>
+                <ul class="specs-list">
+                    <li><strong>Экипировка:</strong> Тактический костюм с усиленной защитой</li>
+                    <li><strong>Основное оружие:</strong> MP5 с перцовыми зарядами</li>
+                    <li><strong>Тактика:</strong> Быстрое перемещение, атака из засады</li>
+                    <li><strong>Особая способность:</strong> Электрошокер</li>
+                </ul>
+            `,
+            heavy: `
+                <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о тяжёлых бойцах USM...</div>
+                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">Тяжёлые бойцы USM (Маршалы)</span></div>
+                <ul class="specs-list">
+                    <li><strong>Броня:</strong> Композитная керамическая броня класса III+</li>
+                    <li><strong>Вооружение:</strong> Автоматы M4 с подствольными гранатомётами</li>
+                    <li><strong>Подготовка:</strong> Спецназ, тактика городского боя</li>
+                    <li><strong>Задача:</strong> Штурм укреплённых позиций</li>
+                </ul>
+            `,
+            locks: `
+                <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о системе замков...</div>
+                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">5-кратная система защиты замков</span></div>
+                <ul class="specs-list">
+                    <li><strong>Уровень 1:</strong> Механический замок высокой секретности</li>
+                    <li><strong>Уровень 2:</strong> Электронный кодовый замок</li>
+                    <li><strong>Уровень 3:</strong> Биометрический сканер</li>
+                    <li><strong>Уровень 4:</strong> Сканер сетчатки глаза</li>
+                    <li><strong>Уровень 5:</strong> Система распознавания голоса</li>
+                </ul>
+            `,
+            mp5: `
+                <div class="terminal-line"><span class="terminal-prompt">[root@assets]></span> Загрузка данных о MP5 с перцовыми зарядами...</div>
+                <div class="terminal-line"><span class="terminal-prompt">[DATA]></span> Объект: <span class="highlight">MP5K с перцовыми зарядами (для Клокеров)</span></div>
+                <ul class="specs-list">
+                    <li><strong>База:</strong> HK MP5K</li>
+                    <li><strong>Боеприпасы:</strong> 9mm перцовые гранулы</li>
+                    <li><strong>Эффект:</strong> Сильное раздражение глаз и дыхательных путей</li>
+                    <li><strong>Дальность:</strong> До 50 метров эффективно</li>
+                </ul>
+            `
         };
-        
-        databaseWindow.style.width = '100%';
-        databaseWindow.style.height = 'calc(100% - 120px)';
-        databaseWindow.style.top = '60px';
-        databaseWindow.style.left = '0';
-        databaseWindow.classList.add('window-maximized');
-        dbMaximizeBtn.textContent = '❐';
-    } else {
-        databaseWindow.style.width = previousDbSize.width || '900px';
-        databaseWindow.style.height = previousDbSize.height || '600px';
-        databaseWindow.style.top = previousDbSize.top || '100px';
-        databaseWindow.style.left = previousDbSize.left || '300px';
-        databaseWindow.classList.remove('window-maximized');
-        dbMaximizeBtn.textContent = '□';
-    }
-    isDbMaximized = !isDbMaximized;
-});
-    
-</script>
+
+        // ===== КОНТЕНТ ДЛЯ БАЗЫ ДАННЫХ =====
+        const dbContent = {
+            russian: `
+                <div class="db-section-title">🇷🇺 РУССКАЯ БРАТВА (Сан-Фиерро)</div>
+                <div class="database-list">
+                    <div class="database-item"><div><div class="db-name">Михаил Фаустин</div><div class="db-description">Главарь, связи с Liberty City</div></div><div class="db-role">РОЗЫСК</div></div>
+                    <div class="database-item"><div><div class="db-name">Сокол</div><div class="db-description">Бывший спецназ ГРУ</div></div><div class="db-role">ПОД НАБЛЮДЕНИЕМ</div></div>
+                    <div class="database-item"><div><div class="db-name">Дмитрий Раскалов</div><div class="db-description">Правая рука</div></div><div class="db-role">РОЗЫСК</div></div>
+                </div>
+            `,
+            triads: `
+                <div class="db-section-title">🀄 КИТАЙСКАЯ ТРИАДА (доки)</div>
+                <div class="database-list">
+                    <div class="database-item"><div><div class="db-name">Минь Хо</div><div class="db-description">Глава триады</div></div><div class="db-role">ПОД НАБЛЮДЕНИЕМ</div></div>
+                </div>
+            `,
+            veterans: `
+                <div class="db-section-title">👴 ВЕТЕРАНЫ</div>
+                <div class="database-list">
+                    <div class="database-item"><div><div class="db-name">Фрэнк "Полковник"</div><div class="db-description">Лидер</div></div><div class="db-role">ПОД НАБЛЮДЕНИЕМ</div></div>
+                </div>
+            `,
+            corrupt: `
+                <div class="db-section-title">🎯 КОРРУПЦИЯ</div>
+                <div class="database-list">
+                    <div class="database-item"><div><div class="db-name">Иван Драго</div><div class="db-description">Мэр Сан-Фиерро</div></div><div class="db-role">РАССЛЕДОВАНИЕ</div></div>
+                </div>
+            `,
+            payday: `
+                <div class="db-section-title">🦅 PAYDAY-БАНДА</div>
+                <div class="database-list">
+                    <div class="database-item"><div><div class="db-name">Даллас</div><div class="db-description">Лидер</div></div><div class="db-role">ОСОБО ОПАСЕН</div></div>
+                </div>
+            `
+        };
+
+        // ===== КОНТЕНТ ДЛЯ СЛУЖЕБНЫХ ЗАПИСОК =====
+        const memosContent = `
+            <div class="memo-item">
+                <div class="memo-title">Операция "Тихий омут"</div>
+                <div class="memo-date">12.03.2026</div>
+                <div class="memo-text">Замечено передвижение русской братвы в районе доков. Предположительно готовится крупная поставка.</div>
+                <div class="memo-classified">СОВ. СЕКРЕТНО</div>
+            </div>
+            <div class="memo-item">
+                <div class="memo-title">Наблюдение за Соколом</div>
+                <div class="memo-date">10.03.2026</div>
+                <div class="memo-text">Объект замечен на встрече с Михаилом Фаустином. Подтверждается связь с русской братвой.</div>
+                <div class="memo-classified">СЕКРЕТНО</div>
+            </div>
+            <div class="memo-item">
+                <div class="memo-title">Мэр Иван Драго</div>
+                <div class="memo-date">05.03.2026</div>
+                <div class="memo-text">Поступила информация о возможных связях мэра с криминальными структурами. Требуется проверка.</div>
+                <div class="memo-classified">ДСП</div>
+            </div>
+        `;
+
+        // ===== ИНИЦИАЛИЗАЦИЯ ПРИЛОЖЕНИЙ =====
+        function initApps() {
+            // Активы агентства
+            const assetsIcon = document.getElementById('assetsIcon');
+            const terminalWindow = document.getElementById('terminalWindow');
+            const closeBtn = document.getElementById('closeBtn');
+            const minimizeBtn = document.getElementById('minimizeBtn');
+            const maximizeBtn = document.getElementById('maximizeBtn');
+            const terminalTabs = document.querySelectorAll('#terminalWindow .terminal-tab');
+            const terminalContent = document.getElementById('terminalContent');
+            const header = document.getElementById('windowHeader');
+
+            if (assetsIcon) {
+                assetsIcon.addEventListener('click', () => {
+                    terminalWindow.style.display = 'flex';
+                    terminalContent.innerHTML = tabContent.shield;
+                });
+            }
+
+            // База данных
+            const databaseIcon = document.getElementById('databaseIcon');
+            const databaseWindow = document.getElementById('databaseWindow');
+            const dbCloseBtn = document.getElementById('dbCloseBtn');
+            const dbMinimizeBtn = document.getElementById('dbMinimizeBtn');
+            const dbMaximizeBtn = document.getElementById('dbMaximizeBtn');
+            const dbTabs = document.querySelectorAll('#databaseWindow .terminal-tab');
+            const dbContentDiv = document.getElementById('databaseContent');
+            const dbHeader = document.getElementById('dbWindowHeader');
+
+            if (databaseIcon) {
+                databaseIcon.addEventListener('click', () => {
+                    databaseWindow.style.display = 'flex';
+                    dbContentDiv.innerHTML = dbContent.russian;
+                });
+            }
+
+            // Служебные записки
+            const memosIcon = document.getElementById('memosIcon');
+            const memosWindow = document.getElementById('memosWindow');
+            const memosCloseBtn = document.getElementById('memosCloseBtn');
+            const memosMinimizeBtn = document.getElementById('memosMinimizeBtn');
+            const memosMaximizeBtn = document.getElementById('memosMaximizeBtn');
+            const memosContentDiv = document.getElementById('memosContent');
+            const memosHeader = document.getElementById('memosWindowHeader');
+
+            if (memosIcon) {
+                memosIcon.addEventListener('click', () => {
+                    memosWindow.style.display = 'flex';
+                    memosContentDiv.innerHTML = memosContent;
+                });
+            }
+
+            // Закрытие окон
+            if (closeBtn) closeBtn.addEventListener('click', () => terminalWindow.style.display = 'none');
+            if (minimizeBtn) minimizeBtn.addEventListener('click', () => terminalWindow.style.display = 'none');
+            if (dbCloseBtn) dbCloseBtn.addEventListener('click', () => databaseWindow.style.display = 'none');
+            if (dbMinimizeBtn) dbMinimizeBtn.addEventListener('click', () => databaseWindow.style.display = 'none');
+            if (memosCloseBtn) memosCloseBtn.addEventListener('click', () => memosWindow.style.display = 'none');
+            if (memosMinimizeBtn) memosMinimizeBtn.addEventListener('click', () => memosWindow.style.display = 'none');
+
+            // Переключение вкладок активов
+            terminalTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    terminalTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    terminalContent.innerHTML = tabContent[this.dataset.tab];
+                });
+            });
+
+            // Переключение вкладок базы данных
+            dbTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    dbTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    dbContentDiv.innerHTML = dbContent[this.dataset.db];
+                });
+            });
+
+            // Заглушки для остальных иконок
+            document.querySelectorAll('.desktop-icon:not(#assetsIcon):not(#databaseIcon):not(#memosIcon)').forEach(icon => {
+                icon.addEventListener('click', () => {
+                    alert('Приложение будет доступно в следующей версии SAnet.OS');
+                });
+            });
+        }
+
+        // Запускаем после загрузки
+        window.addEventListener('load', initApps);
+    </script>
 </body>
-</html>
+    </html>
