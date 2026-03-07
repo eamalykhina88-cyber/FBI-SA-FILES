@@ -990,6 +990,114 @@ const dbContent = {
             terminalWindow.style.height = 'calc(100% - 120px)';
         }
     });
+    // ===== ЛОГИКА ДЛЯ БАЗЫ ДАННЫХ =====
+const databaseWindow = document.getElementById('databaseWindow');
+const dbIcon = document.querySelector('.desktop-icon[data-app="database"]'); // Иконка базы данных
+const dbCloseBtn = document.getElementById('dbCloseBtn');
+const dbMinimizeBtn = document.getElementById('dbMinimizeBtn');
+const dbMaximizeBtn = document.getElementById('dbMaximizeBtn');
+const dbTabs = document.querySelectorAll('[data-db]');
+const dbContentDiv = document.getElementById('databaseContent');
+const dbHeader = document.getElementById('dbWindowHeader');
+
+// Открытие базы данных
+if (dbIcon) {
+    dbIcon.addEventListener('click', () => {
+        databaseWindow.style.display = 'flex';
+        databaseWindow.style.zIndex = '200';
+        dbContentDiv.innerHTML = dbContent.russian;
+        // Активируем первую вкладку
+        dbTabs.forEach(t => t.classList.remove('active'));
+        dbTabs[0]?.classList.add('active');
+    });
+}
+
+// Закрытие
+dbCloseBtn.addEventListener('click', () => {
+    databaseWindow.style.display = 'none';
+});
+
+dbMinimizeBtn.addEventListener('click', () => {
+    databaseWindow.style.display = 'none';
+});
+
+// Переключение вкладок
+dbTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        dbTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const dbKey = this.dataset.db;
+        if (dbContent[dbKey]) {
+            dbContentDiv.innerHTML = dbContent[dbKey];
+        }
+    });
+});
+
+// Перетаскивание окна базы данных
+let isDbDragging = false;
+let dbOffsetX, dbOffsetY;
+
+dbHeader.addEventListener('mousedown', (e) => {
+    if (e.target.closest('.window-controls')) return;
+    isDbDragging = true;
+    const rect = databaseWindow.getBoundingClientRect();
+    dbOffsetX = e.clientX - rect.left;
+    dbOffsetY = e.clientY - rect.top;
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isDbDragging) return;
+    e.preventDefault();
+    
+    let newX = e.clientX - dbOffsetX;
+    let newY = e.clientY - dbOffsetY;
+    
+    const maxX = window.innerWidth - databaseWindow.offsetWidth;
+    const maxY = window.innerHeight - databaseWindow.offsetHeight - 120;
+    
+    newX = Math.min(Math.max(0, newX), maxX);
+    newY = Math.min(Math.max(60, newY), maxY);
+    
+    databaseWindow.style.left = newX + 'px';
+    databaseWindow.style.top = newY + 'px';
+});
+
+document.addEventListener('mouseup', () => {
+    isDbDragging = false;
+});
+
+// Тач-события для мобилок
+dbHeader.addEventListener('touchstart', (e) => {
+    if (e.target.closest('.window-controls')) return;
+    e.preventDefault();
+    const touch = e.touches[0];
+    const rect = databaseWindow.getBoundingClientRect();
+    dbOffsetX = touch.clientX - rect.left;
+    dbOffsetY = touch.clientY - rect.top;
+    isDbDragging = true;
+});
+
+document.addEventListener('touchmove', (e) => {
+    if (!isDbDragging) return;
+    e.preventDefault();
+    const touch = e.touches[0];
+    let newX = touch.clientX - dbOffsetX;
+    let newY = touch.clientY - dbOffsetY;
+    
+    const maxX = window.innerWidth - databaseWindow.offsetWidth;
+    const maxY = window.innerHeight - databaseWindow.offsetHeight - 120;
+    
+    newX = Math.min(Math.max(0, newX), maxX);
+    newY = Math.min(Math.max(60, newY), maxY);
+    
+    databaseWindow.style.left = newX + 'px';
+    databaseWindow.style.top = newY + 'px';
+});
+
+document.addEventListener('touchend', () => {
+    isDbDragging = false;
+});
+    
 </script>
 </body>
 </html>
