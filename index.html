@@ -1035,6 +1035,60 @@ if (memosMaximizeBtn) {
                 });
             });
         }
+            // Видео для Тимура
+const timurIcon = document.getElementById('timurVideoIcon');
+const timurWindow = document.getElementById('timurVideoWindow');
+const timurClose = document.getElementById('timurVideoClose');
+const timurMinimize = document.getElementById('timurVideoMinimize');
+const timurMaximize = document.getElementById('timurVideoMaximize');
+
+if (timurIcon) {
+    timurIcon.addEventListener('click', () => {
+        timurWindow.style.display = 'flex';
+    });
+}
+
+if (timurClose) {
+    timurClose.addEventListener('click', () => {
+        timurWindow.style.display = 'none';
+    });
+}
+
+if (timurMinimize) {
+    timurMinimize.addEventListener('click', () => {
+        timurWindow.style.display = 'none';
+    });
+}
+
+// Разворачивание для видео
+let isTimurMaximized = false;
+let prevTimurSize = {};
+if (timurMaximize) {
+    timurMaximize.addEventListener('click', () => {
+        if (!isTimurMaximized) {
+            prevTimurSize = {
+                width: timurWindow.style.width,
+                height: timurWindow.style.height,
+                top: timurWindow.style.top,
+                left: timurWindow.style.left
+            };
+            timurWindow.style.width = '100%';
+            timurWindow.style.height = 'calc(100% - 120px)';
+            timurWindow.style.top = '60px';
+            timurWindow.style.left = '0';
+            timurWindow.classList.add('window-maximized');
+            timurMaximize.textContent = '❐';
+        } else {
+            timurWindow.style.width = prevTimurSize.width || '900px';
+            timurWindow.style.height = prevTimurSize.height || '600px';
+            timurWindow.style.top = prevTimurSize.top || '80px';
+            timurWindow.style.left = prevTimurSize.left || '200px';
+            timurWindow.classList.remove('window-maximized');
+            timurMaximize.textContent = '□';
+        }
+        isTimurMaximized = !isTimurMaximized;
+    });
+            }
 
         // Запускаем после загрузки
         window.addEventListener('load', initApps);
