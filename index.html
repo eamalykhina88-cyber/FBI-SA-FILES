@@ -522,7 +522,31 @@
 
                 <div class="terminal-content" id="terminalContent"></div>
             </div>
+            <!-- ОКНО БАЗЫ ДАННЫХ -->
+<div class="app-window" id="databaseWindow" style="display: none;">
+    <div class="window-header" id="dbWindowHeader">
+        <div class="window-title">
+            <span>🗄️</span>
+            <span>База данных подозреваемых — УРОВЕНЬ 4</span>
         </div>
+        <div class="window-controls">
+            <span id="dbMinimizeBtn">─</span>
+            <span id="dbMaximizeBtn">□</span>
+            <span id="dbCloseBtn">✕</span>
+        </div>
+    </div>
+    
+    <div class="terminal-tabs">
+        <div class="terminal-tab active" data-db="russian">🇷🇺 РУССКАЯ БРАТВА</div>
+        <div class="terminal-tab" data-db="triads">🀄 ТРИАДЫ</div>
+        <div class="terminal-tab" data-db="veterans">👴 ВЕТЕРАНЫ</div>
+        <div class="terminal-tab" data-db="corrupt">🎯 КОРРУПЦИЯ</div>
+        <div class="terminal-tab" data-db="payday">🦅 PAYDAY</div>
+    </div>
+
+    <div class="terminal-content" id="databaseContent"></div>
+</div>
+</div>
 
         <!-- НИЖНЯЯ ПАНЕЛЬ -->
         <div class="bottom-bar">
