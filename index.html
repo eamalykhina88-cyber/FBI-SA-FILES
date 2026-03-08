@@ -1217,6 +1217,70 @@
                     alert('Приложение будет доступно в следующей версии SAnet.OS');
                 });
             });
+            // ===== ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК =====
+// Для активов
+const terminalTabs = document.querySelectorAll('#terminalWindow .terminal-tab');
+terminalTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        terminalTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        terminalContent.innerHTML = tabContent[this.dataset.tab];
+    });
+});
+
+// Для базы данных
+const dbTabs = document.querySelectorAll('#databaseWindow .terminal-tab');
+dbTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        dbTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        databaseContent.innerHTML = dbContent[this.dataset.db];
+    });
+});
+
+// ===== РАЗВОРАЧИВАНИЕ ДЛЯ ВСЕХ ОКОН =====
+function setupMaximize(btnId, windowEl) {
+    const btn = document.getElementById(btnId);
+    if (!btn || !windowEl) return;
+    
+    let isMaximized = false;
+    let prevSize = {};
+    
+    btn.addEventListener('click', () => {
+        if (!isMaximized) {
+            prevSize = {
+                width: windowEl.style.width,
+                height: windowEl.style.height,
+                top: windowEl.style.top,
+                left: windowEl.style.left
+            };
+            windowEl.style.width = '100%';
+            windowEl.style.height = 'calc(100% - 120px)';
+            windowEl.style.top = '60px';
+            windowEl.style.left = '0';
+            windowEl.classList.add('window-maximized');
+            btn.textContent = '❐';
+        } else {
+            windowEl.style.width = prevSize.width || '900px';
+            windowEl.style.height = prevSize.height || '600px';
+            windowEl.style.top = prevSize.top || '80px';
+            windowEl.style.left = prevSize.left || '200px';
+            windowEl.classList.remove('window-maximized');
+            btn.textContent = '□';
+        }
+        isMaximized = !isMaximized;
+    });
+}
+
+// Настраиваем разворачивание для всех окон
+setupMaximize('maximizeBtn', terminalWindow);
+setupMaximize('dbMaximizeBtn', databaseWindow);
+setupMaximize('memosMaximizeBtn', memosWindow);
+setupMaximize('casesMaximizeBtn', casesWindow);
+setupMaximize('notepadMaximizeBtn', notepadWindow);
+setupMaximize('fbimessageMaximizeBtn', fbimessageWindow);
+setupMaximize('socialMaximizeBtn', socialWindow);
+setupMaximize('timurVideoMaximize', timurWindow);
         });
     </script>
 </body>
